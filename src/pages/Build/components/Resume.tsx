@@ -2,9 +2,9 @@ import { useRef } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import { useReactToPrint } from 'react-to-print';
 
-import useScale from './Templates/useScale';
+import useScale from '../../../hooks/useScale';
 
-import * as Templates from './Templates';
+import * as Templates from '../../../Templates';
 
 const usePrint = (ref: React.MutableRefObject<null>) => useReactToPrint({
   documentTitle: 'resume.pdf',

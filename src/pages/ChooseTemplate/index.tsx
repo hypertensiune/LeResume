@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import './templates.scss'
 import './card.scss'
 
+
+
 function Template({ src, to, ...props }: any) {
   return (
     <>

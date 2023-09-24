@@ -1,4 +1,4 @@
-export async function getRepos(owner: string) {
+export async function useGithub(owner: string) {
   const res = await fetch(`https://api.github.com/users/${owner}/repos`);
   const json = await res.json();
 

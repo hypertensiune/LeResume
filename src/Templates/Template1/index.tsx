@@ -1,4 +1,4 @@
-import { Col, EducationI, Header, IconText, Line, Main, Project, Resume, SectionI, SectionL, Text, Work, IconLink } from '../Components.tsx';
+import { Col, EducationI, Header, IconText, Line, Main, Project, Resume, SectionI, SectionL, Text, Work, IconLink } from '../components.tsx';
 import './t1.scss';
 
 const Template1 = ({ mref, data }: { mref: any, data: ResumeData }) => {

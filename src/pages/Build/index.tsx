@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 import { useImmer } from 'use-immer';
 
-import Form from './Form';
-import Resume from './Resume';
+import Form from './components/Form';
+import Resume from './components/Resume';
 
 import './build.scss';
 

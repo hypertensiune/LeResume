@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 import './home.scss'
 
-import initialValue from './initialValue.ts'
+import home from '../../assets/home.png';
+
+import initialValue from '../../data/initialValue.ts'
 
 export default function Home() {
   const tid = localStorage.getItem("templateID");
@@ -32,7 +34,7 @@ export default function Home() {
               <Link to={link}>Continue building</Link>
             </div>
           </div>
-          <img src='/assets/Group 1.png'></img>
+          <img src={home}></img>
         </div>
       </div>
     </>

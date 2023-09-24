@@ -1,6 +1,8 @@
 import { useSearchParams } from 'react-router-dom';
 
-import * as Forms from './Forms';
+import * as Forms from './forms';
+
+import roadmap from '../../../assets/roadmap';
 
 const steps = ["basics", "education", "projects", "work", "skills", "certitifications"];
 
@@ -64,7 +66,7 @@ export default function Form({
     <div className='form'>
       <div className="container">
         <div className="roadmap">
-          <img src={`/assets/roadmap${step}.svg`}></img>
+          <img src={roadmap[step]}></img>
         </div>
         <div className="form-holder">
           {

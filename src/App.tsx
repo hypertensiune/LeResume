@@ -8,6 +8,9 @@ import ChooseTemplate from './pages/ChooseTemplate'
 import Home from './pages/Home'
 import Build from './pages/Build'
 
+import darkIcon from './assets/dark.svg';
+import lightIcon from './assets/light.svg';
+
 function App() {
   enableMapSet();
 
@@ -34,7 +37,7 @@ function App() {
         <i className="fa-solid fa-home" style={{ fontSize: '1.5rem' }}></i>
       </Link>
       <div id="themetoggle" style={{ position: 'absolute', top: 0, right: 0, padding: '12px', zIndex: '100', cursor: 'pointer' }} onClick={() => setDarkmode(!darkmode)}>
-        <img src={darkmode ? '/assets/light.svg' : '/assets/dark.svg'} style={{ transition: '.2s' }} width="24px"></img>
+        <img src={darkmode ? darkIcon : lightIcon} style={{ transition: '.2s' }} width="24px"></img>
       </div>
       <Routes>
         <Route path='/' element={<Home />} />

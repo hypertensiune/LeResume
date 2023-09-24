@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Button, Input, Description } from './common'
-import { languages, getRepos } from '../Github';
+import { languages, useGithub } from '../../../../hooks/useGithub';
 
 
 function ProjectInput({ value, index, setValue, del }: { value: Project, index: number, setValue: Function, del: Function }) {
@@ -80,7 +80,7 @@ export default function Projects({ github, value, setValue }: { github: string, 
   const [repos, setRepos] = useState<GithubRepo[]>();
 
   useEffect(() => {
-    getRepos(github).then(data => setRepos(data));
+    useGithub(github).then(data => setRepos(data));
   }, []);
 
   function removeProject(id: number) {
