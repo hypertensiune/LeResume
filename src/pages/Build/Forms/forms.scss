@@ -1,0 +1,242 @@
+html {
+  // font-size: 14px;
+  font-size: 0.729vw;
+}
+
+div.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+form {
+  padding-bottom: 2rem;
+
+  position: relative;
+
+  input,
+  input[type=text],
+  input[type=email],
+  input[type=tel],
+  input[type=month],
+  select,
+  textarea,
+  div.selectbox,
+  ul.dropdown-list {
+    background: var(--build-input-bgcolor);
+    font-size: 1.1rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--build-input-border-color);
+    border-bottom: 2px solid var(--build-input-border-color);
+    color: var(--build-input-color);
+    padding: 0.8rem;
+    width: 20rem;
+    line-height: normal;
+    transition: all .15s ease-out;
+    font-family: inherit;
+
+    &:focus {
+      border: 1px solid var(--build-input-border-focus-color);
+      border-bottom: 2px solid var(--build-input-border-focus-color);
+      outline: none;
+    }
+
+    &::placeholder {
+      color: var(--build-input-placeholder);
+    }
+
+    &::-webkit-calendar-picker-indicator {
+      color: var(--build-input-color);
+    }
+  }
+
+
+  textarea {
+    width: 43.5rem;
+  }
+
+  div.selectbox {
+    position: relative;
+    display: inline-block;
+
+    //cursor: pointer;
+
+    label {
+      font-size: 1.1rem;
+      font-weight: normal;
+      margin: 0;
+      opacity: 0.8;
+
+      &::after {
+        content: "\f0d7";
+        position: absolute;
+        right: 5%;
+        font-family: FontAwesome;
+        display: inline-block;
+      }
+    }
+
+    ul.dropdown-list {
+      margin: 0;
+      position: absolute;
+      padding: 0;
+      width: 21.6rem;
+      right: 0;
+      top: 50%;
+      list-style: none;
+      list-style-type: none;
+      visibility: hidden;
+      z-index: -1;
+      transition: all 0.2s;
+      max-height: 20rem;
+      overflow-y: scroll;
+
+      li {
+        border: 1px solid var(--build-input-border-color);
+        border-right: none;
+        border-top: none;
+
+        cursor: pointer;
+        padding: .5rem;
+
+        &:hover,
+        &.selected {
+          background: var(--button-hover2);
+        }
+
+        &.selected::after {
+          content: "\2713";
+          font-family: FontAwesome;
+          position: absolute;
+          right: 5%;
+          vertical-align: center;
+        }
+      }
+    }
+
+    input[id^=dropdown] {
+      position: absolute;
+      display: none;
+
+      &:checked~.dropdown-list {
+        top: 100%;
+        visibility: visible;
+        opacity: 1;
+        z-index: 1100;
+      }
+
+      &:checked+label:not(.noafter):after {
+        content: "\f0d8";
+      }
+    }
+
+    span.language-color {
+      display: inline-block;
+      width: .75rem;
+      height: .75rem;
+      border-radius: 50%;
+      margin-right: .5rem;
+    }
+
+    &.git {
+      width: unset;
+      padding: 0.5em 1em;
+      background-color: var(--button-background2);
+      border-radius: 5px;
+      border: var(--button-border2);
+      cursor: pointer;
+      font-size: unset;
+
+      &:hover {
+        background-color: var(--button-hover2);
+        border: var(--button-border2-hover);
+        color: var(--button-color);
+      }
+
+      input {
+        cursor: pointer;
+      }
+
+      label:after {
+        content: "";
+      }
+    }
+  }
+
+
+  label {
+    font-weight: 600;
+    display: block;
+    color: var(--build-label-color);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    white-space: normal;
+  }
+
+  div.column {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-height: 550px;
+    overflow-y: scroll;
+  }
+
+  div.form2 {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+  }
+
+  div.input {
+    position: relative;
+    margin-bottom: 1rem;
+
+
+    &:not(:first-child) {
+      margin-left: 2rem;
+    }
+
+    &:only-child {
+      margin-left: 0;
+    }
+
+    &.icon {
+      i {
+        color: var(--build-input-color);
+        font-size: 1.1rem;
+        position: absolute;
+        padding: 1rem;
+        text-align: center;
+        opacity: 0.6;
+      }
+
+      input[type=text],
+      input[type=email],
+      input[type=tel] {
+        padding-left: 2.5rem;
+        width: 20rem - 2.5rem + 0.8rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  form div.column {
+    overflow-y: unset;
+    max-height: unset;
+  }
+}
+
+@media (max-width: 550px) {
+  div.row:not(.notcolumn) {
+    flex-direction: column;
+  }
+
+  form textarea {
+    width: 20rem;
+  }
+
+  form div.input:not(:first-child) {
+    margin-left: 0;
+  }
+}

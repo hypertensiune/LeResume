@@ -1,0 +1,26 @@
+.templates {
+  position: relative;
+  display: flex;
+  place-items: center;
+
+  div.wrapper {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+  }
+
+  div.container {
+    display: grid;
+    grid-template-columns: repeat(4, 15vw);
+    column-gap: 2em;
+    row-gap: 2em;
+  }
+
+  @media (max-width: 750px) {
+    div.container {
+      grid-template-columns: repeat(2, 35vw);
+    }
+  }
+}

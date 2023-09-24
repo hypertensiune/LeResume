@@ -1,0 +1,117 @@
+body {
+  // --background-color: #fafafa;
+  --background-color: #f8f8fa;
+  --color: #213547;
+
+  --button-background1: #440ccc;
+  --button-hover1: #1a91f0;
+  --button-color1: white;
+
+  --button-background2: #10b981;
+  --button-hover2: #0fa875;
+  --button-color2: white;
+
+  --resume-holder-background: darkslategray;
+  --resume-holder-darken10: #2a4747;
+
+  --home-image-opacity: 1;
+  --home-background-image-url: url('/assets/bg.jpg');
+
+  --build-background-image-url: url('/assets/bg5.jpg');
+  --build-label-color: #374151;
+
+  --button-delete-background: red;
+
+  --build-input-bgcolor: #f9fafb;
+  --build-input-color: #20242f;
+  --build-input-border-color: #c0c4c9;
+  --build-input-placeholder: #a9a9a9;
+  --build-input-border-focus-color: blue;
+
+  --card-background-color: rgba(255, 255, 255, .015);
+  --card-border-color: rgba(24, 24, 27, 0.08);
+  --card-box-shadow-1: rgba(24, 24, 27, 0.02);
+  --card-box-shadow-1-y: 3px;
+  --card-box-shadow-1-blur: 6px;
+  --card-box-shadow-2: rgba(24, 24, 27, 0.04);
+  --card-box-shadow-2-y: 2px;
+  --card-box-shadow-2-blur: 7px;
+
+  --card-hover-border-color: rgba(24, 24, 27, 0.15);
+  --card-hover-box-shadow-1: rgba(24, 24, 27, 0.05);
+  --card-hover-box-shadow-1-y: 3px;
+  --card-hover-box-shadow-1-blur: 6px;
+  --card-hover-box-shadow-2: rgba(24, 24, 27, 0.1);
+  --card-hover-box-shadow-2-y: 8px;
+  --card-hover-box-shadow-2-blur: 15px;
+  --card-hover-icon-color: #18181B;
+  --card-hover-icon-background-color: rgba(24, 24, 27, 0.04);
+  --card-hover-icon-border-color: rgba(24, 24, 27, 0.34);
+}
+
+body.dark {
+  --background-color: black;
+
+  --button-background1: #ededed;
+  --button-hover1: silver;
+  --button-color1: black;
+
+  --button-background2: #0a0a0a;
+  --button-border2: 1px solid darkslategray;
+  --button-border2-hover: 1px solid silver;
+  --button-hover2: #111;
+  --button-color2: silver;
+
+  .build div.button {
+
+    &:hover {
+      --button-color2: white;
+    }
+
+    &.delete {
+      --button-background2: #ededed;
+      --button-hover2: silver;
+      --button-color2: black;
+    }
+  }
+
+  --resume-holder-background: #111;
+  --resume-holder-darken10: #070707;
+
+  --home-image-opacity: 0.9;
+  --home-background-image-url: url('/assets/bgi.jpg');
+
+  --build-background-image-url: url('/assets/bg5i.jpg');
+  --build-label-color: silver;
+
+  --build-input-bgcolor: #0a0a0a;
+  --build-input-color: #fff;
+  --build-input-border-color: hsla(0, 0%, 100%, .14);
+  --build-input-placeholder: silver;
+  --build-input-border-focus-color: silver;
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: #ededed;
+  }
+}
+
+#root {
+  position: relative;
+  display: flex;
+  place-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+#hometoggle i {
+  color: var(--build-input-color);
+}
+
+@media (max-width: 1200px) {
+  #themetoggle {
+    display: none;
+  }
+}

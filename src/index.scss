@@ -1,0 +1,45 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: silver;
+  border-radius: 20px;
+}
+
+body {
+  background-color: var(--background-color);
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: max(3vw, 3vh);
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: max(2vw, 2vh);
+}
+
+@media print {
+
+  // div.a4 {
+  //   padding: 0;
+  // }
+
+  @page {
+    size: A4;
+    // margin: .75in;
+  }
+}
