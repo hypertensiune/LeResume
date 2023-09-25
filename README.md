@@ -12,6 +12,6 @@ An open source and simple to use web application to build a professional resume.
 - Local saving. Come back any time and contiune building.
 
 <p align="center">
-  <img src="imgs/resumes.svg" width=80% ></img>
+  <img src="imgs/resumes.svg" width=90% ></img>
 </p>
 
