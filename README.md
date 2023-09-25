@@ -4,7 +4,10 @@
 
 An open source and simple to use web application to build a professional resume. No account required. Built for devs.
 
+Completely free, no ads. Everything happens on your browser, no server side, your data is completely private. 
+
 ### Features
+
 - No account required.
 - Multiple templates available.
 - Updating the resume in real time.
@@ -12,6 +15,15 @@ An open source and simple to use web application to build a professional resume.
 - Local saving. Come back any time and contiune building.
 
 <p align="center">
-  <img src="imgs/resumes.svg" width=90% ></img>
+  <img src="imgs/resumes.png"></img>
 </p>
+
+
+## Contributing & new templates
+- Fork this repository
+- Clone the project
+- Commit and push changes to your fork
+- Submit a Pull Request
+
+
 
