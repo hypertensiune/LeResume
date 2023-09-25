@@ -11,5 +11,7 @@ An open source and simple to use web application to build a professional resume.
 - Add your coding projects directly from github.
 - Local saving. Come back any time and contiune building.
 
-<img src="imgs/resumes.svg" width=100%></img>
+<p align="center">
+  <img src="imgs/resumes.svg" width=80% ></img>
+</p>
 
