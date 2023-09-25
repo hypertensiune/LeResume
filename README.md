@@ -20,6 +20,8 @@ Completely free, no ads. Everything happens on your browser, no server side, you
 
 
 ## Contributing & new templates
+Each template is built using a simple component system and style sheet. Everything is located in ```/src/Templates```
+
 - Fork this repository
 - Clone the project
 - Commit and push changes to your fork
