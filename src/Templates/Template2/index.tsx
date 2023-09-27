@@ -20,7 +20,7 @@ export default function Template2({ mref, data }: { mref: any, data: ResumeData 
               <>
                 <Line />
                 <SectionL name='Skills'>
-                  {data.skills.map(s => <Text key={s.id}>{[...s.skills].join(', ')}</Text>)}
+                  {data.skills.map(s => <Text key={s.id}>{s.skills}</Text>)}
                 </SectionL>
               </>
             }
