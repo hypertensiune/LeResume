@@ -68,5 +68,5 @@ interface Project {
 interface SkillGroup {
     id: number;
     type: string;
-    skills: string[];
+    skills: string;
 }

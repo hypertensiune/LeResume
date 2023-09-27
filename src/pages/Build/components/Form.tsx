@@ -48,8 +48,6 @@ export default function Form({
     }));
 
     localStorage.setItem("step", steps[step]);
-
-    console.log("Saved");
   }
 
   const next = () => setSearchParams(prev => {

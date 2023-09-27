@@ -3,15 +3,6 @@ import { Button, Input } from './common'
 
 function SkillInput({ index, value, setValue, del }: { index: number, value: SkillGroup, setValue: Function, del: Function }) {
 
-  function handleSkillInput(input: string) {
-    const skills = input.split(',');
-    const set = new Set<string>();
-
-    skills.map(s => set.add(s.trim()));
-
-    setValue((draft: SkillGroup[]) => { draft[index].skills = [...set.values()] });
-  }
-
   return (
     <>
       <div className="form2">
@@ -25,8 +16,8 @@ function SkillInput({ index, value, setValue, del }: { index: number, value: Ski
           />
           <Input type="text"
             label="Skills"
-            value={value.skills.join(", ")}
-            onChange={(e: any) => handleSkillInput(e.target.value)}
+            value={value.skills}
+            onChange={(e: any) => setValue((draft: SkillGroup[]) => { draft[index].skills = e.target.value })}
           />
         </div>
         <div className="row">
@@ -45,7 +36,7 @@ export default function Skills({ value, setValue }: { value: SkillGroup[], setVa
   }
 
   function addSkill() {
-    setValue((draft: SkillGroup[]) => { draft.push({ id: id, type: '', skills: [] }) });
+    setValue((draft: SkillGroup[]) => { draft.push({ id: id, type: '', skills: '' }) });
     setId(id + 1);
   }
 

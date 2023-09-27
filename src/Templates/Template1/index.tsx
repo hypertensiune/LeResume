@@ -31,35 +31,15 @@ const Template1 = ({ mref, data }: { mref: any, data: ResumeData }) => {
                 {data.education.map((edu: Education) => <EducationI education={edu} />)}
               </SectionL>
             }
-            {/* <SectionL name='Skils & Certifications'>
-              {data.skills.length > 0 && data.skills[0].skills.size > 0 &&
-                <SectionL name='Skills' subsection>
-                  {data.skills.map(s => <Text>{[...s.skills].join(', ')}</Text>)}
-                </SectionL>
-              }
-              <SectionL name='Skils' subsection>
-                <SectionL>
-                  <Text>C++, Kotlin, Typescript</Text>
-                  <Text>Android, React, Teamwork, Planning, Management</Text>
-                </SectionL>
-              </SectionL>
-              <SectionL name='Certs' subsection>
-                {certification.map(edu =>
-                  <EducationI insitution={edu.issuer} degree={edu.name} year={edu.date} />
-                )}
-              </SectionL>
-            </SectionL> */}
             {data.skills.length > 0 && data.skills[0].skills.length > 0 &&
               <SectionL name='Skills'>
-                {data.skills.map(s => <Text>{[...s.skills].join(', ')}</Text>)}
+                {data.skills.map(s => <Text><b>{s.type}:</b> {s.skills}</Text>)}
               </SectionL>
             }
             {data.certifications.length > 0 && data.certifications[0].issuer &&
-              <>
-                <SectionL name='Certifications'>
-                  {data.certifications.map((edu: any) => <EducationI education={edu} />)}
-                </SectionL>
-              </>
+              <SectionL name='Certifications'>
+                {data.certifications.map((edu: any) => <EducationI education={edu} />)}
+              </SectionL>
             }
           </Col>
         </Main>

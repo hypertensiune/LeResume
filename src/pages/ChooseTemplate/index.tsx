@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom'
 import './templates.scss'
 import './card.scss'
 
-
+import temp1 from '../../assets/templates/1.webp';
+import temp2 from '../../assets/templates/2.webp';
 
 function Template({ src, to, ...props }: any) {
   return (
@@ -29,8 +30,8 @@ export default function ChooseTemplate() {
         <div className="wrapper">
           <h1>Choose a template</h1>
           <div className='container'>
-            <Template src="/assets/1.webp" to="/build?template=1&step=basics" onClick={() => setTemplate("1")}></Template>
-            <Template src="/assets/1.webp" to="/build?template=2&step=basics" onClick={() => setTemplate("2")}></Template>
+            <Template src={temp1} to="/build?template=1&step=basics" onClick={() => setTemplate("1")}></Template>
+            <Template src={temp2} to="/build?template=2&step=basics" onClick={() => setTemplate("2")}></Template>
             <Template src="/assets/1.webp" to="/build?template=3&step=basics" onClick={() => setTemplate("3")}></Template>
             <Template src="/assets/1.webp" to="/build?template=4&step=basics" onClick={() => setTemplate("4")}></Template>
           </div>

@@ -8,8 +8,8 @@ import ChooseTemplate from './pages/ChooseTemplate'
 import Home from './pages/Home'
 import Build from './pages/Build'
 
-import darkIcon from './assets/dark.svg';
-import lightIcon from './assets/light.svg';
+import darkIcon from './assets/light.svg';
+import lightIcon from './assets/dark.svg';
 
 function App() {
   enableMapSet();
