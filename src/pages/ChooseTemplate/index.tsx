@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom'
 import './templates.scss'
 import './card.scss'
 
-import temp1 from '../../assets/templates/1.webp';
-import temp2 from '../../assets/templates/2.webp';
+import temp1 from '../../assets/templates/1.png';
+import temp2 from '../../assets/templates/2.png';
 
 function Template({ src, to, ...props }: any) {
   return (
