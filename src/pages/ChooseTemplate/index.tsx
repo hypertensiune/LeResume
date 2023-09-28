@@ -32,8 +32,6 @@ export default function ChooseTemplate() {
           <div className='container'>
             <Template src={temp1} to="/build?template=1&step=basics" onClick={() => setTemplate("1")}></Template>
             <Template src={temp2} to="/build?template=2&step=basics" onClick={() => setTemplate("2")}></Template>
-            <Template src="/assets/1.webp" to="/build?template=3&step=basics" onClick={() => setTemplate("3")}></Template>
-            <Template src="/assets/1.webp" to="/build?template=4&step=basics" onClick={() => setTemplate("4")}></Template>
           </div>
         </div>
       </div>
