@@ -52,7 +52,7 @@ const initialValue: ResumeData = {
     {
       id: 0,
       type: '',
-      skills: []
+      skills: ""
     }
   ]
 }
