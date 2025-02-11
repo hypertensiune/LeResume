@@ -116,13 +116,14 @@ export function EducationL({ education }: any) {
 }
 
 export function EducationI({ education }: any) {
+  console.log(education);
   return (
     <>
       <div className='education inline'>
         <span className='top'>{education.degree || education.name}</span>
         <div className='flex'>
           <span className='middle'>{education.institution || education.issuer}</span>
-          <span className='bottom'>{education.date || (education.start && education.start + " - " + education.end)}</span>
+          <span className='bottom'>{(education.date && parseDate(education.date)) || (education.start && parseDate(education.start) + " - " + parseDate(education.end))}</span>
         </div>
       </div>
     </>
@@ -168,8 +169,13 @@ export function Project({ project }: { project: Project }) {
           <span className="name">{project.name}</span>
         </div>
         <div className="row">
-          <div>
-            {project.github && <IconLink text='Github' icon='fa-brands fa-github' link={"https://" + project.github} />}
+          <div style={{display: 'flex'}}>
+            <div style={{paddingRight: '10px'}}>
+              {project.github && <IconLink text='Github' icon='fa-brands fa-github' link={project.github} />}
+            </div>
+            <div>
+              {project.website && <IconLink text={project.website} icon='fa-solid fa-globe' link={"https://" + project.website} />}
+            </div>
           </div>
           <div>
             {[...project.languages].map((lang: string) => <Language key={lang} lang={lang} />)}
