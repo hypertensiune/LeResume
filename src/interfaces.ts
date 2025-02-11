@@ -53,6 +53,7 @@ interface Work {
     start: string;
     end: string;
     location: string;
+
     description: string[];
 }
 
