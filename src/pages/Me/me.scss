@@ -1,0 +1,172 @@
+div.me {
+  position: relative;
+  display: flex;
+  width: 100%;
+  place-items: center;
+  
+  div.container {
+    width: 70%;
+    height: 80%;
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+  }
+
+  div.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2%;
+  }
+
+  div.main {
+    div.resumes {
+      div.resumeCard {
+
+        padding: 1%;
+        margin: 1% 0 1% 0;
+        background-color: var(--resume-card-background);
+        border: 1px solid var(--resume-card-border);
+        border-radius: 10px;
+        cursor: pointer;
+
+        display: flex;
+
+        transition: all 0.25s;
+
+        &:hover {
+          border: 1px solid var(--resume-card-border-hover);
+        }
+
+        div.details {
+          margin-left: 2%;
+          display: flex;
+          flex-grow: 1;
+          flex-direction: column;
+          justify-content: space-between;
+          
+          font-weight: 500;
+
+          span {
+            color: var(--resume-card-text-secondary);
+            display: block;
+          }
+        }
+
+        div.actions {
+          display: flex;
+          flex-direction: column;
+          justify-items: start;
+
+          span {
+            color: var(--resume-card-text-secondary);
+            display: block;
+            font-size: 1.2rem;
+            padding: 4px;
+            border-radius: 3px;
+
+            &:hover {
+              background-color: #333333;
+              color: white;
+            }
+
+            transition: all 0.25s;
+          }
+
+          div.danger {
+            span {
+              color: adjust-color($color: #d93036, $alpha: 0.5);
+              &:hover {
+                color: #d93036;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  h1,
+  h2 {
+    margin: 0 15px 0 0;
+  }
+  
+  h1 {
+    font-size: 3rem;
+  }
+
+  img {
+    width: 8%;
+    border-radius: 4px;
+    position: relative;
+    display: block;
+  }
+
+  a {
+    border-radius: 8px;
+    border: none;
+    padding: 0.8em 1.6em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: var(--button-background1);
+    color: var(--button-color1);
+    cursor: pointer;
+    transition: all 0.25s;
+
+    &:not(:last-child) {
+      margin-right: 0.5em;
+    }
+
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  a:hover {
+    background-color: var(--button-hover1);
+  }
+
+  @media (max-width: 1440px) {
+    img {
+      width: 10%;
+    }
+  }
+
+  @media (max-width: 990px) {
+    div.wrapper {
+      flex-direction: column;
+    }
+
+    div.buttons {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    img {
+      width: 65%;
+      margin-top: 30px;
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+    }
+  }
+
+  @media (max-width: 460px) {
+    div.buttons {
+      flex-direction: column;
+      place-items: center;
+
+      a:not(:last-child) {
+        margin: 0 0 15px 0;
+      }
+    }
+  }
+}
