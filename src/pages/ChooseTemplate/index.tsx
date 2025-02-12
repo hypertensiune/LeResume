@@ -1,9 +1,13 @@
-import { Link } from 'react-router-dom'
-import './templates.scss'
-import './card.scss'
+import { Link, useNavigate } from 'react-router-dom'
 
 import temp1 from '../../assets/templates/1.png';
 import temp2 from '../../assets/templates/2.png';
+
+import logod from '../../assets/logo.svg';
+import logol from '../../assets/logolight.svg';
+
+import './templates.scss'
+import './card.scss'
 
 function Template({ src, to, ...props }: any) {
   return (
@@ -17,7 +21,9 @@ function Template({ src, to, ...props }: any) {
   )
 }
 
-export default function ChooseTemplate() {
+export default function ChooseTemplate({darkmode}: any) {
+
+  const navigate = useNavigate();
 
   function setTemplate(id: string) {
     localStorage.setItem("templateID", id);
@@ -26,6 +32,9 @@ export default function ChooseTemplate() {
 
   return (
     <>
+      <div id='logo' onClick={() => navigate('/')}>
+        <img src={darkmode ? logod : logol}/>
+      </div>
       <div className='templates'>
         <div className="wrapper">
           <h1>Choose a template</h1>

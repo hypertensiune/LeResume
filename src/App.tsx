@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, Route, Routes, useNavigate } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import './App.scss'
 
 import { enableMapSet } from 'immer'
@@ -8,9 +8,7 @@ import ChooseTemplate from './pages/ChooseTemplate'
 import Home from './pages/Home'
 import Build from './pages/Build'
 import Me from './pages/Me'
-
-import darkIcon from './assets/light.svg';
-import lightIcon from './assets/dark.svg';
+import Login from './pages/Login'
 
 function Menu({children}: any) {
 
@@ -65,16 +63,17 @@ function App() {
           <i className={`fa-solid ${darkmode ? 'fa-moon' : 'fa-sun'}`}></i>
         </div>
         <span className='delimiter'/>
-        <div onClick={() => navigate('/login')}>
-          <span>Log in</span>
+        <div onClick={() => navigate('/signin')}>
+          <span>Sign in</span>
           <i className="fa-solid fa-arrow-right-to-bracket"></i>
         </div>
       </Menu>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Home darkmode={darkmode} />} />
         <Route path='/build' element={<Build />} />
-        <Route path='/templates' element={<ChooseTemplate />} />
+        <Route path='/templates' element={<ChooseTemplate darkmode={darkmode} />} />
         <Route path='/me' element={<Me/>}/>
+        <Route path='/signin' element={<Login/>} />
         <Route path='*' element={<h1>404 Page not found!</h1>} />
       </Routes>
     </>

@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom'
 import './home.scss'
 
-import home from '../../assets/home.png';
-
 import initialValue from '../../data/initialValue.ts'
 
-export default function Home() {
+import home from '../../assets/home.png';
+import logol from '../../assets/logolight.svg';
+import logod from '../../assets/logo.svg';
+
+export default function Home({darkmode}: any) {
   const tid = localStorage.getItem("templateID");
   const step = localStorage.getItem("step");
 
@@ -27,8 +29,10 @@ export default function Home() {
         <div className="wrapper">
           <div className="overlay"></div>
           <div>
+            <div className='logo'>
+              <img src={darkmode ? logol : logod}/>
+            </div>
             <h1>Create a professional resume for free.</h1>
-            <h2>Built for devs. No account required.</h2>
             <div className='buttons'>
               <Link to='/templates' onClick={newResume}>Create new resume</Link>
               <Link to={link}>Continue building</Link>

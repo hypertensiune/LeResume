@@ -32,7 +32,8 @@ div.home {
 
   h1,
   h2 {
-    margin: 0 15px 0 0;
+    margin: 0 15px 15px 0;
+    user-select: none;
   }
 
   img {
@@ -41,28 +42,13 @@ div.home {
     opacity: var(--home-image-opacity);
   }
 
-  a {
-    border-radius: 8px;
-    border: none;
-    padding: 0.8em 1.6em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    background-color: var(--button-background1);
-    color: var(--button-color1);
-    cursor: pointer;
-    transition: all 0.25s;
+  div.logo {
+    width: 50%;
+    margin-left: -1%;
 
-    &:not(:last-child) {
-      margin-right: 2em;
+    img {
+      width: 100%;
     }
-
-    text-decoration: none;
-    display: inline-block;
-  }
-
-  a:hover {
-    background-color: var(--button-hover1);
   }
 
   @media (max-width: 1440px) {
