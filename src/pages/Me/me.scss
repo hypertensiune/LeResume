@@ -97,7 +97,7 @@ div.me {
   }
 
   img {
-    width: 8%;
+    width: 10%;
     border-radius: 4px;
     position: relative;
     display: block;
@@ -127,12 +127,6 @@ div.me {
     background-color: var(--button-hover1);
   }
 
-  @media (max-width: 1440px) {
-    img {
-      width: 10%;
-    }
-  }
-
   @media (max-width: 990px) {
     div.wrapper {
       flex-direction: column;
@@ -141,11 +135,6 @@ div.me {
     div.buttons {
       display: flex;
       justify-content: space-around;
-    }
-
-    img {
-      width: 65%;
-      margin-top: 30px;
     }
 
     h1,

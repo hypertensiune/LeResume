@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 
 import tmp1 from '../../assets/templates/1.png'
@@ -6,10 +7,19 @@ import logod from '../../assets/logo.svg';
 import logol from '../../assets/logolight.svg';
 
 import './me.scss'
+import { useContext } from "react";
+import { AppContext } from "../../context/ProviderContext";
 
 export default function Me({darkmode}: any) {
 
   const navigate = useNavigate();
+  const services = useContext(AppContext);
+
+  useEffect(() => {
+    if(!services.auth.isAuthenticated()) {
+      navigate('/signin');
+    }
+  }, []);
 
   return (
     <>

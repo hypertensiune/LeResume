@@ -1,0 +1,95 @@
+div.login {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+
+  input {
+    background: var(--build-input-bgcolor);
+    font-size: 1.1rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--build-input-border-color);
+    border-bottom: 2px solid var(--build-input-border-color);
+    color: var(--build-input-color);
+    padding: 0.8rem;
+    width: 20rem;
+    line-height: normal;
+    transition: all .15s ease-out;
+    font-family: inherit;
+
+    &:focus {
+      border: 1px solid var(--build-input-border-focus-color);
+      border-bottom: 2px solid var(--build-input-border-focus-color);
+      outline: none;
+    }
+
+    &::placeholder {
+      color: var(--build-input-placeholder);
+    }
+
+    &::-webkit-calendar-picker-indicator {
+      color: var(--build-input-color);
+    }
+  }
+
+  div.input {
+    position: relative;
+    margin-bottom: 1rem;
+
+    &.icon {
+      i {
+        color: var(--build-input-color);
+        font-size: 1.1rem;
+        position: absolute;
+        padding: 1rem;
+        text-align: center;
+        opacity: 0.6;
+      }
+
+      input {
+        padding-left: 2.5rem;
+      }
+    }
+  }
+
+  div.button {
+    padding: 0.5em 1em;
+    background-color: var(--button-background2);
+    color: var(--button-color2);
+    border: var(--button-border2);
+    color: var(--button-color2);
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: var(--button-hover2);
+      border: var(--button-border2-hover);
+    }
+  }
+
+  a {
+    width: calc(100% - 2 * 1.6rem);
+    text-align: center;
+  }
+
+  div.separator {
+    display: flex;
+    align-items: center;
+    margin-top: 3%;
+    margin-bottom: 3%;
+
+    span.line {
+      border-top: 1px solid var(--resume-card-border);
+      margin-top: 1px;
+      width: 50%;
+      height: 1px;
+      display: block;
+    }
+
+    span:not(line) {
+      margin: 0 2px 0 2px;
+    }
+  }
+}
