@@ -10,6 +10,13 @@ interface Language {
     color: string;
 }
 
+interface Resume {
+    data: ResumeData;
+    name: string;
+    created: string;
+    updated: string;
+}
+
 interface ResumeData {
     basics: Details;
     education: Education[];
