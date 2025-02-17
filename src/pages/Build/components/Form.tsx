@@ -3,6 +3,8 @@ import { useSearchParams } from 'react-router-dom';
 import * as Forms from './forms';
 
 import roadmap from '../../../assets/roadmap';
+import { useContext } from 'react';
+import { AppContext } from '../../../context/ProviderContext';
 
 const steps = ["basics", "education", "projects", "work", "skills", "certitifications"];
 
@@ -37,6 +39,8 @@ export default function Form({
   const [searchParams, setSearchParams] = useSearchParams();
   const step = steps.findIndex(step => step == searchParams.get("step"));
 
+  const services = useContext(AppContext);
+
   const saveDataToStorage = () => {
     localStorage.setItem("resumeData", JSON.stringify({
       basics: basics,
@@ -46,6 +50,20 @@ export default function Form({
       skills: skills,
       certifications: certifications
     }));
+
+    services.db.uploadResume(services.auth.getUserId(), {
+      name: "Resume#1",
+      data: {
+        basics: basics,
+        education: education,
+        projects: projects,
+        work: work,
+        skills: skills,
+        certifications: certifications
+      },
+      created: "01/02/2025",
+      updated: "01/02/2025"
+    });
 
     localStorage.setItem("step", steps[step]);
   }

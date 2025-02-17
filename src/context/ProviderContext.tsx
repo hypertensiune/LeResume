@@ -4,14 +4,19 @@ import { initializeApp } from 'firebase/app';
 
 import { Authentication } from '../services/auth';
 import firebaseConfig from '../services/firebaseConfig';
+import { Database } from '../services/database';
 
 type Services = {
-  auth: Authentication
+  auth: Authentication,
+  db: Database
 };
 
+const app = initializeApp(firebaseConfig);
+
 const services: Services = {
-  auth: new Authentication(initializeApp(firebaseConfig))
-}
+  auth: new Authentication(app),
+  db: new Database(app)
+};
 
 const AppContext = createContext({} as Services);
 
