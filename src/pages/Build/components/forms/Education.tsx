@@ -48,16 +48,16 @@ function EducationInput({ index, value, setValue, del }: { index: number, value:
   )
 }
 
-export default function Education({ value, setValue }: { value: Education[], setValue: Function }) {
+export default function Education({ value, setValue }: { value: Resume, setValue: Function }) {
   const [id, setId] = useState(1);
 
   function removeEducation(id: number) {
-    setValue((draft: Education[]) => draft.filter(el => el.id != id));
+    setValue((draft: Resume) => draft.data.education.filter(el => el.id != id));
   }
 
   function addEducation() {
     setId(id + 1);
-    setValue((draft: Education[]) => { draft.push({ id: id, institution: "", degree: "", start: "", end: "" }) });
+    setValue((draft: Resume) => { draft.data.education.push({ id: id, institution: "", degree: "", start: "", end: "" }) });
   }
 
   return (
@@ -68,7 +68,7 @@ export default function Education({ value, setValue }: { value: Education[], set
           <Button icon="fa-solid fa-plus" onClick={addEducation} />
         </div>
         <div className="column">
-          {value.map((e, i) => <EducationInput key={i} index={i} value={e} setValue={setValue} del={() => removeEducation(e.id)} />)}
+          {value.data.education.map((e, i) => <EducationInput key={i} index={i} value={e} setValue={setValue} del={() => removeEducation(e.id)} />)}
         </div>
       </form>
     </>

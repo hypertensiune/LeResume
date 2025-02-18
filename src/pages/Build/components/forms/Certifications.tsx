@@ -39,15 +39,15 @@ function CertificationInput({ index, value, setValue, del }: { index: number, va
   )
 }
 
-export default function Certifications({ value, setValue }: { value: Certification[], setValue: Function }) {
+export default function Certifications({ value, setValue }: { value: Resume, setValue: Function }) {
   const [id, setId] = useState(1);
 
   function removeCertification(id: number) {
-    setValue((draft: Certification[]) => draft.filter(el => el.id != id));
+    setValue((draft: Resume) => draft.data.certifications.filter(el => el.id != id));
   }
 
   function addCertification() {
-    setValue((draft: Certification[]) => { draft.push({ id: id, issuer: "", name: "", date: "" }) });
+    setValue((draft: Resume) => { draft.data.certifications.push({ id: id, issuer: "", name: "", date: "" }) });
     setId(id + 1);
   }
 
@@ -59,7 +59,7 @@ export default function Certifications({ value, setValue }: { value: Certificati
           <Button icon="fa-solid fa-plus" onClick={addCertification} />
         </div>
         <div className="column">
-          {value.map((e, i) => <CertificationInput key={i} value={e} index={i} setValue={setValue} del={() => removeCertification(e.id)} />)}
+          {value.data.certifications.map((e, i) => <CertificationInput key={i} value={e} index={i} setValue={setValue} del={() => removeCertification(e.id)} />)}
         </div>
       </form>
     </>

@@ -74,7 +74,7 @@ function ProjectInput({ value, index, setValue, del }: { value: Project, index: 
   )
 }
 
-export default function Projects({ github, value, setValue }: { github: string, value: Project[], setValue: Function }) {
+export default function Projects({ github, value, setValue }: { github: string, value: Resume, setValue: Function }) {
   const [id, setId] = useState(1);
 
   const [repos, setRepos] = useState<GithubRepo[]>();
@@ -84,16 +84,16 @@ export default function Projects({ github, value, setValue }: { github: string, 
   }, []);
 
   function removeProject(id: number) {
-    setValue((draft: Project[]) => draft.filter(el => el.id != id))
+    setValue((draft: Resume) => draft.data.projects.filter(el => el.id != id))
   }
 
   function addProject() {
-    setValue((draft: Project[]) => { draft.push({ id: id, name: '', languages: [], description: [], github: '', website: '' }) });
+    setValue((draft: Resume) => { draft.data.projects.push({ id: id, name: '', languages: [], description: [], github: '', website: '' }) });
     setId(id + 1);
   }
 
   function addProjectFromGithub(repo: GithubRepo) {
-    setValue((draft: Project[]) => { draft.push({ id: id, name: repo.name, languages: [repo.language], description: [repo.description], github: repo.url, website: '' }) });
+    setValue((draft: Resume) => { draft.data.projects.push({ id: id, name: repo.name, languages: [repo.language], description: [repo.description], github: repo.url, website: '' }) });
     setId(id + 1);
   }
 
@@ -124,7 +124,7 @@ export default function Projects({ github, value, setValue }: { github: string, 
           }
         </div>
         <div className="column">
-          {value.map((e, i) => <ProjectInput key={i} value={e} index={i} setValue={setValue} del={() => removeProject(e.id)} />)}
+          {value.data.projects.map((e, i) => <ProjectInput key={i} value={e} index={i} setValue={setValue} del={() => removeProject(e.id)} />)}
         </div>
       </form >
     </>

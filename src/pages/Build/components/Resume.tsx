@@ -19,21 +19,7 @@ const usePrint = (ref: React.MutableRefObject<null>) => useReactToPrint({
   }
 });
 
-export default function Resume({
-  basics,
-  education,
-  projects,
-  work,
-  skills,
-  certifications,
-}: {
-  basics: Details,
-  education: Education[],
-  projects: Project[],
-  work: Work[],
-  skills: SkillGroup[],
-  certifications: Certification[],
-}) {
+export default function Resume({resume}: {resume: Resume}) {
   const [searchParams] = useSearchParams();
   const tid = searchParams.get("template")!;
 
@@ -57,8 +43,8 @@ export default function Resume({
         <div className='resume-preview' style={{ width: 793.7 * scale, height: 1122.52 * scale }}>
           {
             {
-              "1": <Templates.Template1 mref={ref} data={{ basics: basics, education: education, certifications: certifications, work: work, projects: projects, skills: skills }} />,
-              "2": <Templates.Template2 mref={ref} data={{ basics: basics, education: education, certifications: certifications, work: work, projects: projects, skills: skills }} />
+              "1": <Templates.Template1 mref={ref} data={resume.data} />,
+              "2": <Templates.Template2 mref={ref} data={resume.data} />
             }[tid]
           }
         </div>

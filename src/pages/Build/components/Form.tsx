@@ -5,36 +5,12 @@ import * as Forms from './forms';
 import roadmap from '../../../assets/roadmap';
 import { useContext } from 'react';
 import { AppContext } from '../../../context/ProviderContext';
+import { saveResumeToLocalStorage } from '../../../services/localstorage';
+import { getTimestamp } from '../../../services/time';
 
 const steps = ["basics", "education", "projects", "work", "skills", "certitifications"];
 
-export default function Form({
-  basics,
-  setBasics,
-  education,
-  setEducation,
-  projects,
-  setProjects,
-  work,
-  setWork,
-  skills,
-  setSkills,
-  certifications,
-  setCertifications
-}: {
-  basics: Details,
-  setBasics: Function,
-  education: Education[],
-  setEducation: Function,
-  projects: Project[],
-  setProjects: Function,
-  work: Work[],
-  setWork: Function,
-  skills: SkillGroup[],
-  setSkills: Function,
-  certifications: Certification[],
-  setCertifications: Function
-}) {
+export default function Form({ resume, setResume } : { resume: Resume, setResume: Function }) {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const step = steps.findIndex(step => step == searchParams.get("step"));
@@ -42,29 +18,16 @@ export default function Form({
   const services = useContext(AppContext);
 
   const saveDataToStorage = () => {
-    localStorage.setItem("resumeData", JSON.stringify({
-      basics: basics,
-      education: education,
-      projects: projects,
-      work: work,
-      skills: skills,
-      certifications: certifications
-    }));
+    const time = getTimestamp();
 
-    services.db.uploadResume(services.auth.getUserId(), {
-      name: "Resume#1",
-      data: {
-        basics: basics,
-        education: education,
-        projects: projects,
-        work: work,
-        skills: skills,
-        certifications: certifications
-      },
-      created: "01/02/2025",
-      updated: "01/02/2025"
+    setResume((draft: Resume) => { 
+      draft.created = draft.created == "" ? time : draft.created;
+      draft.updated = time;
     });
-
+    
+    saveResumeToLocalStorage(resume);
+    services.db.uploadResume(services.auth.getUserId(), resume);
+    
     localStorage.setItem("step", steps[step]);
   }
 
@@ -87,24 +50,35 @@ export default function Form({
         <div className="form-holder">
           {
             {
-              0: <Forms.BasicDetails value={basics} setValue={setBasics} />,
-              1: <Forms.Education value={education} setValue={setEducation} />,
-              2: <Forms.Projects github={basics.github.split('/')[1]} value={projects} setValue={setProjects} />,
-              3: <Forms.Work value={work} setValue={setWork} />,
-              4: <Forms.Skills value={skills} setValue={setSkills} />,
-              5: <Forms.Certifications value={certifications} setValue={setCertifications} />
+              0: <Forms.BasicDetails value={resume} setValue={setResume} />,
+              1: <Forms.Education value={resume} setValue={setResume} />,
+              2: <Forms.Projects github={resume.data.basics.github.split('/')[1]} value={resume} setValue={setResume} />,
+              3: <Forms.Work value={resume} setValue={setResume} />,
+              4: <Forms.Skills value={resume} setValue={setResume} />,
+              5: <Forms.Certifications value={resume} setValue={setResume} />
             }[step]
           }
         </div>
         <div className="buttons" style={{ justifyContent: step == 0 ? 'flex-end' : step == 5 ? 'flex-start' : 'space-between' }}>
           {step > 0 &&
-            <div className="button" onClick={() => { saveDataToStorage(); previous(); }}>
+            <div 
+              className="button" 
+              onClick={() => { 
+                saveDataToStorage(); 
+                previous(); 
+              }}>
               <i className="fa-solid fa-chevron-left" style={{ marginRight: '1em' }}></i>
               Previous
             </div>
           }
           {step < 5 &&
-            <div className="button" onClick={() => { saveDataToStorage(); next(); }} style={{ float: 'right' }}>
+            <div 
+              className="button" 
+              onClick={() => { 
+                saveDataToStorage(); 
+                next(); 
+              }} 
+              style={{ float: 'right' }}>
               Next
               <i className="fa-solid fa-chevron-right" style={{ marginLeft: '1em' }}></i>
             </div>

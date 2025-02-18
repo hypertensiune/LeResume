@@ -58,15 +58,15 @@ function WorkInput({ index, value, setValue, del }: { index: number, value: Work
   )
 }
 
-export default function Work({ value, setValue }: { value: Work[], setValue: Function }) {
+export default function Work({ value, setValue }: { value: Resume, setValue: Function }) {
   const [id, setId] = useState(1);
 
   function removeWork(id: number) {
-    setValue((draft: Work[]) => draft.filter(el => el.id != id))
+    setValue((draft: Resume) => draft.data.work.filter(el => el.id != id))
   }
 
   function addWork() {
-    setValue((draft: Work[]) => { draft.push({ id: id, position: '', company: '', description: [], start: '', end: '', location: '' }) });
+    setValue((draft: Resume) => { draft.data.work.push({ id: id, position: '', company: '', description: [], start: '', end: '', location: '' }) });
     setId(id + 1);
   }
 
@@ -78,7 +78,7 @@ export default function Work({ value, setValue }: { value: Work[], setValue: Fun
           <Button icon="fa-solid fa-plus" onClick={addWork} />
         </div>
         <div className="column">
-          {value.map((e, i) => <WorkInput key={i} value={e} index={i} setValue={setValue} del={() => removeWork(e.id)} />)}
+          {value.data.work.map((e, i) => <WorkInput key={i} value={e} index={i} setValue={setValue} del={() => removeWork(e.id)} />)}
         </div>
       </form>
     </>

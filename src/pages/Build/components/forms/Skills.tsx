@@ -28,15 +28,15 @@ function SkillInput({ index, value, setValue, del }: { index: number, value: Ski
   )
 }
 
-export default function Skills({ value, setValue }: { value: SkillGroup[], setValue: Function }) {
+export default function Skills({ value, setValue }: { value: Resume, setValue: Function }) {
   const [id, setId] = useState(1);
 
   function removeSkill(id: number) {
-    setValue((draft: SkillGroup[]) => draft.filter(el => el.id != id))
+    setValue((draft: Resume) => draft.data.skills.filter(el => el.id != id))
   }
 
   function addSkill() {
-    setValue((draft: SkillGroup[]) => { draft.push({ id: id, type: '', skills: '' }) });
+    setValue((draft: Resume) => { draft.data.skills.push({ id: id, type: '', skills: '' }) });
     setId(id + 1);
   }
 
@@ -48,7 +48,7 @@ export default function Skills({ value, setValue }: { value: SkillGroup[], setVa
           <Button icon="fa-solid fa-plus" onClick={addSkill} />
         </div>
         <div className="column">
-          {value.map((e, i) => <SkillInput key={i} value={e} index={i} setValue={setValue} del={() => removeSkill(e.id)} />)}
+          {value.data.skills.map((e, i) => <SkillInput key={i} value={e} index={i} setValue={setValue} del={() => removeSkill(e.id)} />)}
         </div>
       </form>
     </>
