@@ -82,7 +82,7 @@ export default function Me({darkmode}: any) {
             <h1>Welcome, User</h1>
             <div className="userActions">
               <Link to="/"><i className="fa-solid fa-pen"></i></Link>
-              <Link to="/">Create resume</Link>
+              <Link to="/templates">Create resume</Link>
             </div>
           </div>
           <div className="main">

@@ -1,28 +1,17 @@
 import { Link } from 'react-router-dom'
-import './home.scss'
-
-import initialValue from '../../data/initialValue.ts'
+import { getResumeFromLocalStorage } from '../../services/localstorage';
 
 import home from '../../assets/home.png';
 import logol from '../../assets/logolight.svg';
 import logod from '../../assets/logo.svg';
 
+import './home.scss'
+
 export default function Home({darkmode}: any) {
-  const tid = localStorage.getItem("templateID");
-  const step = localStorage.getItem("step");
-
-  let link = "/";
-  if (tid != null && step != null) {
-    link = `/build?template=${tid}&step=${step}`;
-  }
-
-  function newResume() {
-    localStorage.removeItem("templateID");
-    localStorage.removeItem("step");
-
-    localStorage.setItem("resumeData", JSON.stringify(initialValue));
-  }
-
+  
+  const {template} = getResumeFromLocalStorage();
+  const continueLink = template ? `/build?template=${template}&step=basics` : '/';
+  
   return (
     <>
       <div className='home'>
@@ -34,8 +23,8 @@ export default function Home({darkmode}: any) {
             </div>
             <h1>Create a professional resume for free.</h1>
             <div className='buttons'>
-              <Link to='/templates' onClick={newResume}>Create new resume</Link>
-              <Link to={link}>Continue building</Link>
+              <Link to='/templates'>Create new resume</Link>
+              <Link to={continueLink}>Continue building</Link>
             </div>
           </div>
           <img src={home}></img>

@@ -3,7 +3,7 @@ export function saveResumeToLocalStorage(resume: Resume) {
 }
 
 export function getResumeFromLocalStorage() {
-  return JSON.parse(localStorage.getItem("resume") || "") as Resume;
+  return JSON.parse(localStorage.getItem("resume") || "{}") as Resume;
 }
 
 export function deleteResumeFromLocalStorage() {
