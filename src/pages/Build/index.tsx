@@ -1,6 +1,7 @@
 import { useState } from 'react'
-
 import { useImmer } from 'use-immer';
+
+import { getResumeFromLocalStorage } from '../../services/localstorage';
 
 import Form from './components/Form';
 import Resume from './components/Resume';
@@ -9,16 +10,14 @@ import './build.scss';
 
 export default function Build() {
 
-  const [initialValue, _] = useState<ResumeData>(JSON.parse(localStorage.getItem("resumeData") || ""));
+  const [resume, _] = useState<Resume>(getResumeFromLocalStorage());
 
-  const [basics, setBasics] = useImmer(initialValue.basics);
-  const [education, setEducation] = useImmer(initialValue.education);
-  const [projects, setProjects] = useImmer(initialValue.projects);
-  const [work, setWork] = useImmer(initialValue.work);
-  const [skills, setSkills] = useImmer(initialValue.skills);
-  const [certifications, setCertifications] = useImmer(initialValue.certifications);
-
-  console.log(projects);
+  const [basics, setBasics] = useImmer(resume.data.basics);
+  const [education, setEducation] = useImmer(resume.data.education);
+  const [projects, setProjects] = useImmer(resume.data.projects);
+  const [work, setWork] = useImmer(resume.data.work);
+  const [skills, setSkills] = useImmer(resume.data.skills);
+  const [certifications, setCertifications] = useImmer(resume.data.certifications);
 
   return (
     <>

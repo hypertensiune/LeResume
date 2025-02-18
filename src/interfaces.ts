@@ -13,6 +13,7 @@ interface Language {
 interface Resume {
     data: ResumeData;
     name: string;
+    template: number;
     created: string;
     updated: string;
 }

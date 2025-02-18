@@ -24,7 +24,8 @@ export class Database {
         name: key,
         data: data1[key]['data'],
         created: data1[key]['created'],
-        updated: data1[key]['updated']
+        updated: data1[key]['updated'],
+        template: data1[key]['template']
       }
     });
 
@@ -34,7 +35,8 @@ export class Database {
         name: key,
         data: data1[key]['data'],
         created: data1[key]['created'],
-        updated: data1[key]['updated']
+        updated: data1[key]['updated'],
+        template: data1[key]['template']
       }
     });
 

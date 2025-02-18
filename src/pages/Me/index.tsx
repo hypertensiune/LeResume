@@ -1,5 +1,10 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
+
+import { AppContext } from "../../context/ProviderContext";
+import useAuth from "../../hooks/useAuth";
+
+import { saveResumeToLocalStorage } from "../../services/localstorage";
 
 import tmp1 from '../../assets/templates/1.png'
 
@@ -7,9 +12,41 @@ import logod from '../../assets/logo.svg';
 import logol from '../../assets/logolight.svg';
 
 import './me.scss'
-import { useContext } from "react";
-import { AppContext } from "../../context/ProviderContext";
-import useAuth from "../../hooks/useAuth";
+
+function ResumeCard({resume}: {resume: Resume}) {
+
+  const navigate = useNavigate();
+  
+  function onClick() {
+    saveResumeToLocalStorage(resume);
+    navigate(`/build?template=${resume.template}&step=basics`);
+  }
+
+  return (
+    <div className="resumeCard" onClick={onClick}>
+      <img src={tmp1}/>
+      <div className="details">
+        <div>
+          <span style={{"color": "var(--resume-card-text-primary)"}}>{resume.name}</span>
+          <span>Template #1</span>
+        </div>
+        <div>
+          <span style={{"fontSize": "0.8rem"}}>Created {resume.created}</span>
+          <span style={{"fontSize": "0.8rem"}}>Edited {resume.updated}</span>
+        </div>
+      </div>
+      <div className="actions">
+        <span><i className="fa-solid fa-download"></i></span>
+        <div style={{"flexGrow": "1"}}>
+          <span><i className="fa-solid fa-share-nodes"></i></span>
+        </div>
+        <div className="danger">
+          <span><i className="fa-solid fa-trash"></i></span>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function Me({darkmode}: any) {
 
@@ -49,34 +86,7 @@ export default function Me({darkmode}: any) {
           </div>
           <div className="main">
             <div className="resumes">
-              {
-                resumes.map(resume => {
-                  return (
-                    <div className="resumeCard">
-                      <img src={tmp1}/>
-                      <div className="details">
-                        <div>
-                          <span style={{"color": "var(--resume-card-text-primary)"}}>{resume.name}</span>
-                          <span>Template #1</span>
-                        </div>
-                        <div>
-                          <span style={{"fontSize": "0.8rem"}}>Created {resume.created}</span>
-                          <span style={{"fontSize": "0.8rem"}}>Edited {resume.updated}</span>
-                        </div>
-                      </div>
-                      <div className="actions">
-                        <span><i className="fa-solid fa-download"></i></span>
-                        <div style={{"flexGrow": "1"}}>
-                          <span><i className="fa-solid fa-share-nodes"></i></span>
-                        </div>
-                        <div className="danger">
-                          <span><i className="fa-solid fa-trash"></i></span>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })
-              }
+              {resumes.map(resume => <ResumeCard resume={resume}></ResumeCard>)}
             </div>
           </div>
         </div>
