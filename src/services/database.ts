@@ -48,7 +48,8 @@ export class Database {
       [resume.name]: {
         data: resume.data,
         created: resume.created,
-        updated: resume.updated
+        updated: resume.updated,
+        template: resume.template
       }
     });
   }

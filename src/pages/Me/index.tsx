@@ -12,6 +12,7 @@ import logod from '../../assets/logo.svg';
 import logol from '../../assets/logolight.svg';
 
 import './me.scss'
+import { getDateFromTimestamp } from "../../services/time";
 
 function ResumeCard({resume}: {resume: Resume}) {
 
@@ -31,8 +32,8 @@ function ResumeCard({resume}: {resume: Resume}) {
           <span>Template #1</span>
         </div>
         <div>
-          <span style={{"fontSize": "0.8rem"}}>Created {resume.created}</span>
-          <span style={{"fontSize": "0.8rem"}}>Edited {resume.updated}</span>
+          <span style={{"fontSize": "0.8rem"}}>Created {getDateFromTimestamp(resume.created)}</span>
+          <span style={{"fontSize": "0.8rem"}}>Edited {getDateFromTimestamp(resume.updated)}</span>
         </div>
       </div>
       <div className="actions">
