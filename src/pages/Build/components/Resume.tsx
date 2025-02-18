@@ -1,23 +1,10 @@
 import { useRef } from 'react'
 import { useSearchParams } from 'react-router-dom';
-import { useReactToPrint } from 'react-to-print';
 
+import usePrint from '../../../hooks/usePrint';
 import useScale from '../../../hooks/useScale';
 
 import * as Templates from '../../../Templates';
-
-const usePrint = (ref: React.MutableRefObject<null>) => useReactToPrint({
-  documentTitle: 'resume.pdf',
-  content: () => ref.current,
-  print: async (printWindow: HTMLIFrameElement) => {
-    const printContent = printWindow.contentDocument || printWindow.contentWindow?.document;
-
-    const a4 = printContent?.querySelector('.a4') as HTMLElement;
-    a4.style.transform = 'scale(1)';
-
-    printWindow.contentWindow?.print();
-  }
-});
 
 export default function Resume({resume}: {resume: Resume}) {
   const [searchParams] = useSearchParams();
