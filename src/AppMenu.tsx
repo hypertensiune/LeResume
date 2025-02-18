@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "./context/ProviderContext";
+import useAuth from "./hooks/useAuth";
 
 export default function AppMenu({darkmode, setDarkmode}: any) {
 
@@ -8,7 +9,8 @@ export default function AppMenu({darkmode, setDarkmode}: any) {
   const navigate = useNavigate();
 
   const services = useContext(AppContext);
-  const isAuthenticated = services.auth.isAuthenticated();
+  
+  const isAuthenticated = useAuth(services.auth);
 
   return (
     <div className='menu'>

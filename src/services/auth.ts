@@ -1,5 +1,5 @@
 import { FirebaseApp } from "firebase/app"
-import { createUserWithEmailAndPassword, getAdditionalUserInfo, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAdditionalUserInfo, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, User } from "firebase/auth";
 import { Database } from "./database";
 
 export class Authentication {
@@ -11,9 +11,9 @@ export class Authentication {
     this.provider = new GoogleAuthProvider();
   }
 
-  public isAuthenticated() {
+  public onAuthStateChange(callback: (user: User | null) => void) {
     const auth = getAuth(this.app);
-    return auth.currentUser != null;
+    return auth.onAuthStateChanged(user => callback(user));
   }
 
   public getUserId() {

@@ -9,6 +9,7 @@ import logol from '../../assets/logolight.svg';
 import './me.scss'
 import { useContext } from "react";
 import { AppContext } from "../../context/ProviderContext";
+import useAuth from "../../hooks/useAuth";
 
 export default function Me({darkmode}: any) {
 
@@ -17,17 +18,20 @@ export default function Me({darkmode}: any) {
 
   const [resumes, setResumes] = useState<Resume[]>([]);
 
+  const isAuthenticated = useAuth(services.auth);
+
   useEffect(() => {
-    console.log("ME PAGE");
-    if(!services.auth.isAuthenticated()) {
-      //navigate('/signin');
+    if(isAuthenticated == false) {
+      navigate('/signin');
       return;
     }
 
-    services.db.getResumes(services.auth.getUserId()).then(data => {
-      setResumes(data);
-    });
-  }, []);
+    if(isAuthenticated == true) {
+      services.db.getResumes(services.auth.getUserId()).then(data => {
+        setResumes(data);
+      });
+    }
+  }, [isAuthenticated]);
 
   return (
     <>
