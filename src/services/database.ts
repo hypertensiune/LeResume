@@ -1,5 +1,5 @@
 import { FirebaseApp } from "firebase/app";
-import { doc, Firestore, getDoc, getFirestore, setDoc, updateDoc } from "firebase/firestore";
+import { deleteField, doc, Firestore, getDoc, getFirestore, setDoc, updateDoc } from "firebase/firestore";
 
 export class Database {
   private db: Firestore
@@ -51,6 +51,12 @@ export class Database {
         updated: resume.updated,
         template: resume.template
       }
+    });
+  }
+
+  public async deleteResume(userId: string, resume: Resume) {
+    await updateDoc(doc(this.db, userId, "nonshared"), {
+      [resume.name]: deleteField()
     });
   }
 }

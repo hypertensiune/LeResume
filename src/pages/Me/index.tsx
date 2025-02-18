@@ -14,17 +14,9 @@ import logol from '@assets/logolight.svg';
 
 import './me.scss'
 
-function ResumeCard({resume}: {resume: Resume}) {
-
-  const navigate = useNavigate();
-  
-  function onClick() {
-    saveResumeToLocalStorage(resume);
-    navigate(`/build?template=${resume.template}&step=basics`);
-  }
-
+function ResumeCard({resume, onClick, onDelete}: {resume: Resume, onClick: Function, onDelete: Function}) {
   return (
-    <div className="resumeCard" onClick={onClick}>
+    <div className="resumeCard" onClick={() => onClick()}>
       <img src={tmp1}/>
       <div className="details">
         <div>
@@ -41,7 +33,10 @@ function ResumeCard({resume}: {resume: Resume}) {
         <div style={{"flexGrow": "1"}}>
           <span><i className="fa-solid fa-share-nodes"></i></span>
         </div>
-        <div className="danger">
+        <div className="danger" onClick={e => {
+          e.stopPropagation();
+          onDelete();
+        }}>
           <span><i className="fa-solid fa-trash"></i></span>
         </div>
       </div>
@@ -71,6 +66,18 @@ export default function Me({darkmode}: any) {
     }
   }, [isAuthenticated]);
 
+  function onDelete(resume: Resume) {
+    if(confirm("Are you sure you want to delete this resume?")) {
+      services.db.deleteResume(services.auth.getUserId(), resume);
+      setResumes(resumes.filter(r => r.name != resume.name));
+    }
+  }
+
+  function onClick(resume: Resume) {
+    saveResumeToLocalStorage(resume);
+    navigate(`/build?template=${resume.template}&step=basics`);
+  }
+
   return (
     <>
       <div id='logo' onClick={() => navigate('/')}>
@@ -87,7 +94,7 @@ export default function Me({darkmode}: any) {
           </div>
           <div className="main">
             <div className="resumes">
-              {resumes.map(resume => <ResumeCard resume={resume}></ResumeCard>)}
+              {resumes.map(resume => <ResumeCard resume={resume} onClick={() => onClick(resume)} onDelete={() => onDelete(resume)}></ResumeCard>)}
             </div>
           </div>
         </div>
