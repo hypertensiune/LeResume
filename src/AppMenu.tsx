@@ -1,7 +1,8 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "./context/ProviderContext";
-import useAuth from "./hooks/useAuth";
+
+import { AppContext } from "@context/ProviderContext";
+import useAuth from "@hooks/useAuth";
 
 export default function AppMenu({darkmode, setDarkmode}: any) {
 

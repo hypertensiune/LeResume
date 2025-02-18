@@ -1,12 +1,13 @@
 import { useSearchParams } from 'react-router-dom';
+import { useContext } from 'react';
+
+import { AppContext } from '@context/ProviderContext';
+import { saveResumeToLocalStorage } from '@services/localstorage';
+import { getTimestamp } from '@services/time';
 
 import * as Forms from './forms';
 
-import roadmap from '../../../assets/roadmap';
-import { useContext } from 'react';
-import { AppContext } from '../../../context/ProviderContext';
-import { saveResumeToLocalStorage } from '../../../services/localstorage';
-import { getTimestamp } from '../../../services/time';
+import roadmap from '@assets/roadmap';
 
 const steps = ["basics", "education", "projects", "work", "skills", "certitifications"];
 

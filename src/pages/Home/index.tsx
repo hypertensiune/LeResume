@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import { getResumeFromLocalStorage } from '../../services/localstorage';
+import { getResumeFromLocalStorage } from '@services/localstorage';
 
-import home from '../../assets/home.png';
-import logol from '../../assets/logolight.svg';
-import logod from '../../assets/logo.svg';
+import home from '@assets/home.png';
+import logol from '@assets/logolight.svg';
+import logod from '@assets/logo.svg';
 
 import './home.scss'
 

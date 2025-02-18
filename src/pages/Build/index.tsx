@@ -1,6 +1,6 @@
 import { useImmer } from 'use-immer';
 
-import { getResumeFromLocalStorage } from '../../services/localstorage';
+import { getResumeFromLocalStorage } from '@services/localstorage';
 
 import Form from './components/Form';
 import Resume from './components/Resume';

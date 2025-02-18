@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Button, Input, Description } from './common'
-import { languages, useGithub } from '../../../../hooks/useGithub';
+import { languages, useGithub } from '@hooks/useGithub';
 
+import { Button, Input, Description } from './common'
 
 function ProjectInput({ value, index, setValue, del }: { value: Project, index: number, setValue: Function, del: Function }) {
 

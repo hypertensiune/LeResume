@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Authentication } from "../services/auth";
+import { Authentication } from "@services/auth";
 
 /**
  * @param auth The Authentication service

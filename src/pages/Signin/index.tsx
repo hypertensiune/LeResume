@@ -1,11 +1,12 @@
 import { useContext, useState } from 'react'
 import { NavigateFunction, useNavigate } from 'react-router-dom'
 
-import logod from '../../assets/logo.svg';
-import logol from '../../assets/logolight.svg';
+import { AppContext } from '@context/ProviderContext';
+
+import logod from '@assets/logo.svg';
+import logol from '@assets/logolight.svg';
 
 import './signin.scss'
-import { AppContext } from '../../context/ProviderContext';
 
 export default function Signin({darkmode}: any) {
 

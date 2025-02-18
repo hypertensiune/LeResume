@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react'
-import { Route, Routes, useNavigate } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
 import { enableMapSet } from 'immer'
 
-import { ProviderContext } from './context/ProviderContext'
+import { ProviderContext } from '@context/ProviderContext'
 
 import AppMenu from './AppMenu.tsx'
 
-import ChooseTemplate from './pages/ChooseTemplate'
-import Home from './pages/Home'
-import Build from './pages/Build'
-import Me from './pages/Me'
-import Signin from './pages/Signin'
+import ChooseTemplate from '@pages/ChooseTemplate'
+import Home from '@pages/Home'
+import Build from '@pages/Build'
+import Me from '@pages/Me'
+import Signin from '@pages/Signin'
 
 import './App.scss'
 

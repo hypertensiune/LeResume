@@ -1,10 +1,10 @@
 import { useRef } from 'react'
 import { useSearchParams } from 'react-router-dom';
 
-import usePrint from '../../../hooks/usePrint';
-import useScale from '../../../hooks/useScale';
+import usePrint from '@hooks/usePrint';
+import useScale from '@hooks/useScale';
 
-import * as Templates from '../../../Templates';
+import * as Templates from '@templates/index';
 
 export default function Resume({resume}: {resume: Resume}) {
   const [searchParams] = useSearchParams();

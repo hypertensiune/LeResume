@@ -1,14 +1,15 @@
 import { Link, useNavigate } from 'react-router-dom'
 
-import { clearLocalStorage, saveResumeToLocalStorage } from '../../services/localstorage';
-import { getTimestamp } from '../../services/time';
-import emptyResume from '../../data/emptyResume';
+import { clearLocalStorage, saveResumeToLocalStorage } from '@services/localstorage';
+import { getTimestamp } from '@services/time';
 
-import temp1 from '../../assets/templates/1.png';
-import temp2 from '../../assets/templates/2.png';
+import emptyResume from '@data/emptyResume';
 
-import logod from '../../assets/logo.svg';
-import logol from '../../assets/logolight.svg';
+import temp1 from '@assets/templates/1.png';
+import temp2 from '@assets/templates/2.png';
+
+import logod from '@assets/logo.svg';
+import logol from '@assets/logolight.svg';
 
 import './card.scss'
 import './templates.scss'

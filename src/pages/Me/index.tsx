@@ -1,18 +1,18 @@
 import { useEffect, useState, useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
 
-import { AppContext } from "../../context/ProviderContext";
-import useAuth from "../../hooks/useAuth";
+import { AppContext } from "@context/ProviderContext";
+import useAuth from "@hooks/useAuth";
 
-import { saveResumeToLocalStorage } from "../../services/localstorage";
+import { saveResumeToLocalStorage } from "@services/localstorage";
+import { getDateFromTimestamp } from "@services/time";
 
-import tmp1 from '../../assets/templates/1.png'
+import tmp1 from '@assets/templates/1.png'
 
-import logod from '../../assets/logo.svg';
-import logol from '../../assets/logolight.svg';
+import logod from '@assets/logo.svg';
+import logol from '@assets/logolight.svg';
 
 import './me.scss'
-import { getDateFromTimestamp } from "../../services/time";
 
 function ResumeCard({resume}: {resume: Resume}) {
 

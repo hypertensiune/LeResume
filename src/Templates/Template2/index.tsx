@@ -1,4 +1,4 @@
-import { Col, Header, IconText, Line, Main, Resume, SectionL, Work, Text, EducationL, Project, IconLink } from '../components.tsx';
+import { Col, Header, IconText, Line, Main, Resume, SectionL, Work, Text, EducationL, Project, IconLink } from '../components';
 import './t2.scss'
 
 export default function Template2({ mref, data }: { mref: any, data: ResumeData }) {
