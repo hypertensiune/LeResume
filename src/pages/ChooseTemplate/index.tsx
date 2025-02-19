@@ -1,4 +1,7 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom'
+
+import { AppContext } from '@context/ProviderContext';
 
 import { clearLocalStorage, saveResumeToLocalStorage } from '@services/localstorage';
 import { getTimestamp } from '@services/time';
@@ -14,13 +17,13 @@ import logol from '@assets/logolight.svg';
 import './card.scss'
 import './templates.scss'
 
-function Template({ src, to, ...props }: any) {
+function Template({ src, onClick, ...props }: any) {
   return (
     <>
       <div className="template-card" {...props}>
         <div className='overlay'></div>
         <img src={src} />
-        <Link to={to}>Use this template</Link>
+        <a onClick={onClick}>Use this template</a>
       </div>
     </>
   )
@@ -29,16 +32,28 @@ function Template({ src, to, ...props }: any) {
 export default function ChooseTemplate({darkmode}: any) {
 
   const navigate = useNavigate();
+  const services = useContext(AppContext);
 
-  function prepareForNewBuild(templateID: number) {
+  async function prepareForNewBuild(templateID: number) {
     clearLocalStorage();
     
     const resume = {...emptyResume};
-    resume.name = "New Resume";
+    const id = await services.db.getMetadata(services.auth.getUserId(), 'increment');
+    services.db.setMetadata(services.auth.getUserId(), 'increment', parseInt(id) + 1);
+
+    resume.id = id;
+    resume.name = `New Resume #${id}`;
     resume.template = templateID;
     resume.created = getTimestamp();
 
     saveResumeToLocalStorage(resume);
+  }
+
+  async function onTemplateClick(templateID: number) {
+    await prepareForNewBuild(templateID);
+    const link = `/build?template=${templateID}&step=basics`
+
+    navigate(link);
   }
 
   return (
@@ -50,8 +65,8 @@ export default function ChooseTemplate({darkmode}: any) {
         <div className="wrapper">
           <h1>Choose a template</h1>
           <div className='container'>
-            <Template src={temp1} to="/build?template=1&step=basics" onClick={() => prepareForNewBuild(1)}></Template>
-            <Template src={temp2} to="/build?template=2&step=basics" onClick={() => prepareForNewBuild(2)}></Template>
+            <Template src={temp1} to="/build?template=1&step=basics" onClick={() => onTemplateClick(1)}></Template>
+            <Template src={temp2} to="/build?template=2&step=basics" onClick={() => onTemplateClick(2)}></Template>
           </div>
         </div>
       </div>

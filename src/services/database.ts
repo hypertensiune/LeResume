@@ -14,6 +14,23 @@ export class Database {
     await setDoc(doc(db, userId, "nonshared"), {});
   }
 
+  public async getMetadata(userId: string, key?: string) {
+    const result = await getDoc(doc(this.db, userId, "metadata"));
+    const data = result.data()!;
+
+    if(key != undefined) {
+      return data[key];
+    }
+
+    return data;
+  }
+
+  public setMetadata(userId: string, key: string, value: any) {
+    updateDoc(doc(this.db, userId, "metadata"), {
+      [key]: value
+    });
+  }
+
   public async getResumes(userId: string): Promise<Resume[]> {
     const shared = await getDoc(doc(this.db, userId, "shared"));
     const nonshared = await getDoc(doc(this.db, userId, "nonshared"));
@@ -21,7 +38,8 @@ export class Database {
     const data1 = nonshared.data()!;
     const r1 = Object.keys(data1).map(key => {
       return {
-        name: key,
+        id: parseInt(key),
+        name: data1[key]['name'],
         data: data1[key]['data'],
         created: data1[key]['created'],
         updated: data1[key]['updated'],
@@ -32,7 +50,8 @@ export class Database {
     const data2 = shared.data()!;
     const r2 = Object.keys(data2).map(key => {
       return {
-        name: key,
+        id: parseInt(key),
+        name: data1[key]['name'],
         data: data1[key]['data'],
         created: data1[key]['created'],
         updated: data1[key]['updated'],
@@ -45,7 +64,8 @@ export class Database {
 
   public async uploadResume(userId: string, resume: Resume) {
     await updateDoc(doc(this.db, userId, "nonshared"), {
-      [resume.name]: {
+      [resume.id]: {
+        name: resume.name,
         data: resume.data,
         created: resume.created,
         updated: resume.updated,
@@ -56,7 +76,7 @@ export class Database {
 
   public async deleteResume(userId: string, resume: Resume) {
     await updateDoc(doc(this.db, userId, "nonshared"), {
-      [resume.name]: deleteField()
+      [resume.id]: deleteField()
     });
   }
 }

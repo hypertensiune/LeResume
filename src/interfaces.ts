@@ -11,6 +11,7 @@ interface Language {
 }
 
 interface Resume {
+    id: number;
     data: ResumeData;
     name: string;
     template: number;
