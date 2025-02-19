@@ -50,6 +50,8 @@ body {
 
   --resume-card-background: #d3d3d3;
   --resume-card-border: hsla(0, 0%, 100%, .14);
+
+  --resume-danger-text: #ff6166;
 }
 
 body.dark {
@@ -99,6 +101,8 @@ body.dark {
 
   --resume-card-text-primary: #ededed;
   --resume-card-text-secondary: #a1a1a1;
+
+  --resume-danger-text: #ff6166;
 
   h1,
   h2,

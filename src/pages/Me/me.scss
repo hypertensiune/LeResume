@@ -87,6 +87,55 @@ div.me {
     }
   }
 
+  div.dialog {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+
+    div.wrapper {
+      padding: 1%;
+      background-color: var(--resume-card-background);
+      border: 1px solid var(--resume-card-border);
+      border-radius: 5px;
+      cursor: pointer;
+
+      h1 {
+        font-size: 2rem;
+        margin: 0 0 4% 0;
+        font-weight: 400;
+        color: white;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+        font-weight: 400;
+        margin-bottom: 2%;
+
+        &.danger {
+          color: var(--resume-danger-text);
+          margin-bottom: 10%;
+        }
+      }
+
+      a.danger {
+        background-color: #d93036;
+        color: #ededed;
+        float: right;
+
+        &:hover {
+          background-color: lighten($color: #d93036, $amount: 10);
+        }
+      }
+    }
+  }
+
   h1,
   h2 {
     margin: 0 15px 0 0;

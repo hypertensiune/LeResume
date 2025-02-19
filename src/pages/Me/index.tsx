@@ -15,36 +15,68 @@ import logol from '@assets/logolight.svg';
 import './me.scss'
 
 function ResumeCard({resume, onClick, onDelete, onShare}: {resume: Resume, onClick: Function, onDelete: Function, onShare: Function}) {
+  
+  const [dialogOpen, setDialogOpen] = useState(false);
+
   return (
-    <div className="resumeCard" onClick={() => onClick()}>
-      <img src={tmp1}/>
-      <div className="details">
-        <div>
-          <span style={{"color": "var(--resume-card-text-primary)"}}>{resume.name}</span>
-          <span>Template #1</span>
+    <>
+      <div className="resumeCard" onClick={() => onClick()}>
+        <img src={tmp1}/>
+        <div className="details">
+          <div>
+            <span style={{"color": "var(--resume-card-text-primary)"}}>{resume.name}</span>
+            <span>Template #1</span>
+          </div>
+          <div>
+            <span style={{"fontSize": "0.8rem"}}>Created {getDateFromTimestamp(resume.created)}</span>
+            <span style={{"fontSize": "0.8rem"}}>Edited {getDateFromTimestamp(resume.updated)}</span>
+          </div>
         </div>
-        <div>
-          <span style={{"fontSize": "0.8rem"}}>Created {getDateFromTimestamp(resume.created)}</span>
-          <span style={{"fontSize": "0.8rem"}}>Edited {getDateFromTimestamp(resume.updated)}</span>
+        <div className="actions">
+          <span><i className="fa-solid fa-download"></i></span>
+          {resume.shared && 
+            <span onClick={e => { 
+              alert("Views: " + resume.views); 
+              e.stopPropagation(); 
+            }}>
+              <i className="fa-solid fa-eye"></i>
+            </span>
+          }
+          <div style={{"flexGrow": "1"}} onClick={e => {
+            e.stopPropagation();
+            onShare();
+          }}>
+            <span><i className="fa-solid fa-share-nodes"></i></span>
+          </div>
+          <div className="danger" onClick={e => {
+            e.stopPropagation();
+            setDialogOpen(true);
+          }}>
+            <span><i className="fa-solid fa-trash"></i></span>
+          </div>
         </div>
       </div>
-      <div className="actions">
-        <span><i className="fa-solid fa-download"></i></span>
-        {resume.shared && <span onClick={e => { alert("Views: " + resume.views); e.stopPropagation(); }}><i className="fa-solid fa-eye"></i></span>}
-        <div style={{"flexGrow": "1"}} onClick={e => {
-          e.stopPropagation();
-          onShare();
-        }}>
-          <span><i className="fa-solid fa-share-nodes"></i></span>
+      {dialogOpen &&
+        <div className="dialog">
+          <div className="wrapper">
+            <h1>Delete resume</h1>
+            <h2>This resume will be deleted along with all data and views.</h2>
+            <h2 className="danger">Warning, action is not reversible!</h2>
+            <div>
+              <a onClick={() => setDialogOpen(false)}>Cancel</a>
+              <a 
+                className="danger"
+                onClick={() => {
+                  onDelete();
+                  setDialogOpen(false);
+                }}> 
+                  Delete
+              </a>
+            </div>
+          </div>
         </div>
-        <div className="danger" onClick={e => {
-          e.stopPropagation();
-          onDelete();
-        }}>
-          <span><i className="fa-solid fa-trash"></i></span>
-        </div>
-      </div>
-    </div>
+      }
+    </>
   )
 }
 
@@ -71,10 +103,8 @@ export default function Me({darkmode}: any) {
   }, [isAuthenticated]);
 
   function onDelete(resume: Resume) {
-    if(confirm("Are you sure you want to delete this resume?")) {
-      services.db.deleteResume(services.auth.getUserId(), resume);
-      setResumes(resumes.filter(r => r.name != resume.name));
-    }
+    services.db.deleteResume(services.auth.getUserId(), resume);
+    setResumes(resumes.filter(r => r.name != resume.name));
   }
 
   function onClick(resume: Resume) {
@@ -90,7 +120,6 @@ export default function Me({darkmode}: any) {
       resume.shared = true;
       services.db.setShared(services.auth.getUserId(), resume).then(link => {
         navigator.clipboard.writeText(link);
-        console.log(link);
       });
     }
   }
