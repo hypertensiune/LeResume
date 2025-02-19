@@ -12,6 +12,7 @@ import Home from '@pages/Home'
 import Build from '@pages/Build'
 import Me from '@pages/Me'
 import Signin from '@pages/Signin'
+import Shared from '@pages/Shared'
 
 import './App.scss'
 
@@ -44,6 +45,7 @@ function App() {
         <Route path='/templates' element={<ChooseTemplate darkmode={darkmode} />} />
         <Route path='/me' element={<Me/>}/>
         <Route path='/signin' element={<Signin/>} />
+        <Route path='/shared/:user/:rid' element={<Shared/>}/>
         <Route path='*' element={<h1>404 Page not found!</h1>} />
       </Routes>
     </ProviderContext>

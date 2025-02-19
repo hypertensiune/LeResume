@@ -1,4 +1,7 @@
 const emptyResume: Resume = {
+  id: 0,
+  shared: false,
+  views: 0,
   name: "",
   template: 0,
   created: "",

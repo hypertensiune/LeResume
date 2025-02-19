@@ -14,7 +14,7 @@ import logol from '@assets/logolight.svg';
 
 import './me.scss'
 
-function ResumeCard({resume, onClick, onDelete}: {resume: Resume, onClick: Function, onDelete: Function}) {
+function ResumeCard({resume, onClick, onDelete, onShare}: {resume: Resume, onClick: Function, onDelete: Function, onShare: Function}) {
   return (
     <div className="resumeCard" onClick={() => onClick()}>
       <img src={tmp1}/>
@@ -30,7 +30,11 @@ function ResumeCard({resume, onClick, onDelete}: {resume: Resume, onClick: Funct
       </div>
       <div className="actions">
         <span><i className="fa-solid fa-download"></i></span>
-        <div style={{"flexGrow": "1"}}>
+        {resume.shared && <span onClick={e => { alert("Views: " + resume.views); e.stopPropagation(); }}><i className="fa-solid fa-eye"></i></span>}
+        <div style={{"flexGrow": "1"}} onClick={e => {
+          e.stopPropagation();
+          onShare();
+        }}>
           <span><i className="fa-solid fa-share-nodes"></i></span>
         </div>
         <div className="danger" onClick={e => {
@@ -78,6 +82,19 @@ export default function Me({darkmode}: any) {
     navigate(`/build?template=${resume.template}&step=basics`);
   }
 
+  function onShare(resume: Resume) {
+    if(resume.shared) {
+      resume.shared = false;
+      services.db.setNonshared(services.auth.getUserId(), resume);
+    } else {
+      resume.shared = true;
+      services.db.setShared(services.auth.getUserId(), resume).then(link => {
+        navigator.clipboard.writeText(link);
+        console.log(link);
+      });
+    }
+  }
+
   return (
     <>
       <div id='logo' onClick={() => navigate('/')}>
@@ -94,7 +111,14 @@ export default function Me({darkmode}: any) {
           </div>
           <div className="main">
             <div className="resumes">
-              {resumes.map(resume => <ResumeCard resume={resume} onClick={() => onClick(resume)} onDelete={() => onDelete(resume)}></ResumeCard>)}
+              {resumes.map(resume => 
+                <ResumeCard 
+                  resume={resume} 
+                  onClick={() => onClick(resume)} 
+                  onDelete={() => onDelete(resume)}
+                  onShare={() => onShare(resume)}/>
+                )
+              }
             </div>
           </div>
         </div>

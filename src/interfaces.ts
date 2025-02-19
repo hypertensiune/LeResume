@@ -12,9 +12,11 @@ interface Language {
 
 interface Resume {
     id: number;
-    data: ResumeData;
     name: string;
     template: number;
+    shared: boolean;
+    views: number;
+    data: ResumeData;
     created: string;
     updated: string;
 }
