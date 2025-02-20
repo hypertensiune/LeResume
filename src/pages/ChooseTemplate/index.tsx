@@ -23,7 +23,7 @@ function Template({ src, onClick, ...props }: any) {
       <div className="template-card" {...props}>
         <div className='overlay'></div>
         <img src={src} />
-        <a onClick={onClick}>Use this template</a>
+        <button className='primary' onClick={onClick}>Use this template</button>
       </div>
     </>
   )
@@ -42,7 +42,7 @@ export default function ChooseTemplate({darkmode}: any) {
     services.db.setMetadata(services.auth.getUserId(), 'increment', parseInt(id) + 1);
 
     resume.id = id;
-    resume.name = `New Resume #${id}`;
+    resume.name = `Resume #${id}`;
     resume.template = templateID;
     resume.created = getTimestamp();
 

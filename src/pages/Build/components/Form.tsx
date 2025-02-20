@@ -62,19 +62,19 @@ export default function Form({ resume, setResume } : { resume: Resume, setResume
         </div>
         <div className="buttons" style={{ justifyContent: step == 0 ? 'flex-end' : step == 5 ? 'flex-start' : 'space-between' }}>
           {step > 0 &&
-            <div 
-              className="button" 
+            <button 
+              className="secondary" 
               onClick={() => { 
                 saveDataToStorage(); 
                 previous(); 
               }}>
               <i className="fa-solid fa-chevron-left" style={{ marginRight: '1em' }}></i>
               Previous
-            </div>
+            </button>
           }
           {step < 5 &&
-            <div 
-              className="button" 
+            <button 
+              className="secondary" 
               onClick={() => { 
                 saveDataToStorage(); 
                 next(); 
@@ -82,7 +82,7 @@ export default function Form({ resume, setResume } : { resume: Resume, setResume
               style={{ float: 'right' }}>
               Next
               <i className="fa-solid fa-chevron-right" style={{ marginLeft: '1em' }}></i>
-            </div>
+            </button>
           }
         </div>
       </div>

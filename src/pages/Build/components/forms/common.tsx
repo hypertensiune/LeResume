@@ -15,10 +15,11 @@ export function Input({ type, label, placeholder, icon, required, full, value, o
 export function Button({ text, del, icon, onClick }: any) {
   return (
     <>
-      <div className={del ? "button delete" : "button"} onClick={onClick}>
+      {/* <button className={del ? "primary delete" : "primary"} onClick={onClick}> */}
+      <button className={del ? "primary" : "primary"} onClick={onClick}>
         {icon && <i className={icon}></i>}
         {text}
-      </div>
+      </button>
     </>
   )
 }

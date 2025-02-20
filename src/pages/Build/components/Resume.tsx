@@ -36,7 +36,7 @@ export default function Resume({resume}: {resume: Resume}) {
           }
         </div>
         <div className="buttons">
-          <div className="button" style={{ float: 'right' }} onClick={() => { handlePrint(); }}><i className="fa-solid fa-download"></i> Download</div>
+          <button className="secondary" style={{ float: 'right' }} onClick={() => { handlePrint(); }}><i className="fa-solid fa-download"></i> Download</button>
         </div>
       </div>
       <div id="collapse" className="collapse" onClick={collapse}>

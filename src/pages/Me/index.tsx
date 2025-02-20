@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 import { AppContext } from "@context/ProviderContext";
 import useAuth from "@hooks/useAuth";
@@ -63,15 +63,15 @@ function ResumeCard({resume, onClick, onDelete, onShare}: {resume: Resume, onCli
             <h2>This resume will be deleted along with all data and views.</h2>
             <h2 className="danger">Warning, action is not reversible!</h2>
             <div>
-              <a onClick={() => setDialogOpen(false)}>Cancel</a>
-              <a 
-                className="danger"
+              <button className="primary" onClick={() => setDialogOpen(false)}>Cancel</button>
+              <button 
+                className="delete danger"
                 onClick={() => {
                   onDelete();
                   setDialogOpen(false);
                 }}> 
                   Delete
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -134,8 +134,7 @@ export default function Me({darkmode}: any) {
           <div className="header">
             <h1>Welcome, User</h1>
             <div className="userActions">
-              <Link to="/"><i className="fa-solid fa-pen"></i></Link>
-              <Link to="/templates">Create resume</Link>
+              <button className="primary" onClick={() => navigate('/templates')}>Create resume</button>
             </div>
           </div>
           <div className="main">

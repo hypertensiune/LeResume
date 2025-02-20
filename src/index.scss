@@ -14,32 +14,149 @@
   border-radius: 20px;
 }
 
-body {
-  background-color: var(--background-color);
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: max(3vw, 3vh);
-  line-height: 1.1;
-}
-
-h2 {
-  font-size: max(2vw, 2vh);
-}
-
 @media print {
-
   // div.a4 {
   //   padding: 0;
   // }
-
   @page {
     size: A4;
     // margin: .75in;
   }
+}
+
+// Variables for light theme
+body {
+  --background-color: hsla(0, 0%, 98%, 1);
+  // --color: #213547;
+  --text-primary: #171717;
+  --text-secondary: #666666;
+
+  --hover-bg: #eaeaea;
+  --hover-accent: #000;
+
+  --menu-hover-bg: #eaeaeaa0;
+
+  // Buttons
+  --button-primary-bg: #171717;
+  --button-primary-hover: #383838;
+  --button-primary-color: white;
+
+  // --button-secondary-bg: #10b981;
+  // --button-secondary-hover: #0fa875;
+  // --button-secondary-color: white;
+  --button-secondary-bg: white;
+  --button-secondary-hover: #f2f2f2;
+  --button-secondary-color: #171717;
+  --button-secondary-border: 1px solid #a1a1a1;
+  --button-secondary-border-hover: 1px solid #a1a1a1;
+
+  --button-danger-bg: #da2f35;
+  --button-danger-hover: #cb2a2f
+  --button-danger-color: #f5f5f5;
+  
+
+  // @pages/Home
+  --home-image-opacity: 1;
+  --home-background-image-url: url('/assets/bg.jpg');
+
+
+  // @pages/Build
+  --resume-holder-background: darkslategray;
+  --resume-holder-shadow: #2a4747;
+ 
+  --build-background-image-url: url('/assets/bg5.jpg');
+  --build-label-color: #374151;
+  --build-input-bgcolor: #f9fafb;
+  --build-input-color: #20242f;
+  --build-input-border-color: #c0c4c9;
+  --build-input-placeholder: #a9a9a9;
+  --build-input-border-focus-color: #383838;
+
+  --button-delete-background: red;
+
+
+  // @pages/Me
+  --resume-card-background: white;
+  --resume-card-border: hsla(0, 0%, 0%, .08);
+  --resume-card-border-hover: hsla(0, 0%, 79%, 1);
+  --resume-card-shadow: 0px 2px 2px rgba(0, 0, 0, 0.04);
+
+  --resume-danger-text: #ff6166;
+
+
+  // @pages/ChooseTemplate
+  --card-background-color: rgba(255, 255, 255, .015);
+  --card-border-color: rgba(24, 24, 27, 0.08);
+  --card-box-shadow-1: rgba(24, 24, 27, 0.02);
+  --card-box-shadow-1-y: 3px;
+  --card-box-shadow-1-blur: 6px;
+  --card-box-shadow-2: rgba(24, 24, 27, 0.04);
+  --card-box-shadow-2-y: 2px;
+  --card-box-shadow-2-blur: 7px;
+
+  --card-hover-border-color: rgba(24, 24, 27, 0.15);
+  --card-hover-box-shadow-1: rgba(24, 24, 27, 0.05);
+  --card-hover-box-shadow-1-y: 3px;
+  --card-hover-box-shadow-1-blur: 6px;
+  --card-hover-box-shadow-2: rgba(24, 24, 27, 0.1);
+  --card-hover-box-shadow-2-y: 8px;
+  --card-hover-box-shadow-2-blur: 15px;
+  --card-hover-icon-color: #18181B;
+  --card-hover-icon-background-color: rgba(24, 24, 27, 0.04);
+  --card-hover-icon-border-color: rgba(24, 24, 27, 0.34);
+}
+
+
+
+// Variables for dark theme
+body.dark {
+  --background-color: black;
+  --text-primary: #ededed;
+  --text-secondary: #a1a1a1;
+
+  --hover-bg: #333333;
+  --hover-accent: #fff;
+
+  --menu-hover-bg: #333333a0;
+
+  // Buttons
+  --button-primary-bg: #ededed;
+  --button-primary-hover: silver;
+  --button-primary-color: black;
+
+  --button-secondary-bg: #0a0a0a;
+  --button-secondary-hover: #111;
+  --button-secondary-color: silver;
+  --button-secondary-border: 1px solid darkslategray;
+  --button-secondary-border-hover: 1px solid silver;
+
+  --button-danger-bg: #da2f35;
+  --button-danger-hover: #ff6166;
+  --button-danger-color: #f5f5f5;
+
+
+  // @pages/Home
+  --home-image-opacity: 0.9;
+  --home-background-image-url: url('/assets/bgi.jpg');
+
+
+  // @pages/Build
+  --resume-holder-background: #111;
+  --resume-holder-shadow: #070707;
+  
+  --build-background-image-url: url('/assets/bg5i.jpg');
+  --build-label-color: silver;
+  --build-input-bgcolor: #0a0a0a;
+  --build-input-color: #fff;
+  --build-input-border-color: hsla(0, 0%, 100%, .14);
+  --build-input-placeholder: silver;
+  --build-input-border-focus-color: silver;
+
+
+  // @pages/Me
+  --resume-card-background: #0a0a0a;
+  --resume-card-border: hsla(0, 0%, 100%, .14);
+  --resume-card-border-hover: hsla(0, 0%, 27%, 1);
+
+  --resume-danger-text: #ff6166;
 }

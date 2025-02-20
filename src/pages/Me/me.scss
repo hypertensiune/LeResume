@@ -29,6 +29,7 @@ div.me {
         background-color: var(--resume-card-background);
         border: 1px solid var(--resume-card-border);
         border-radius: 10px;
+        box-shadow: var(--resume-card-shadow);
         cursor: pointer;
 
         display: flex;
@@ -49,7 +50,7 @@ div.me {
           font-weight: 500;
 
           span {
-            color: var(--resume-card-text-secondary);
+            color: var(--text-secondary);
             display: block;
           }
         }
@@ -60,15 +61,15 @@ div.me {
           justify-items: start;
 
           span {
-            color: var(--resume-card-text-secondary);
+            color: var(--text-secondary);
             display: block;
             font-size: 1.2rem;
             padding: 4px;
             border-radius: 3px;
 
             &:hover {
-              background-color: #333333;
-              color: white;
+              background-color: var(--hover-bg);
+              color: var(--hover-accent);
             }
 
             transition: all 0.25s;
@@ -124,14 +125,8 @@ div.me {
         }
       }
 
-      a.danger {
-        background-color: #d93036;
-        color: #ededed;
+      button.danger {
         float: right;
-
-        &:hover {
-          background-color: lighten($color: #d93036, $amount: 10);
-        }
       }
     }
   }
