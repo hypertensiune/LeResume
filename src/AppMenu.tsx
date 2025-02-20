@@ -19,9 +19,22 @@ export default function AppMenu({darkmode, setDarkmode}: any) {
         <i className="fa-solid fa-bars"></i>
       </div>
       <div id='menu' className={open ? 'open' : ''}>
-        <div onClick={() => navigate('/me')}>
-          <span>My account</span>
-          <i className="fa-regular fa-user"></i>
+        <div style={{flexDirection: 'column', alignItems: 'flex-start'}} onClick={() => navigate('/me')}>
+          <span style={{width: "100%"}}>
+            <span style={{float: "left"}}>My account</span>
+            <i style={{float: "right"}} className="fa-regular fa-user"></i>
+          </span>
+          {isAuthenticated && 
+            <span
+              style={{
+                float: "left", 
+                textOverflow: "ellipsis", 
+                width: "80%",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                color: "var(--text-secondary)"}}>
+                {services.auth.getUserName()}
+            </span>}
         </div>
         <div onClick={() => navigate('/')}>
           <span>Home</span>

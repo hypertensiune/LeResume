@@ -132,11 +132,12 @@ export default function Me({darkmode}: any) {
       <div className='me'>
         <div className="container">
           <div className="header">
-            <h1>Welcome, User</h1>
+            <h1>Your resumes</h1>
             <div className="userActions">
               <button className="primary" onClick={() => navigate('/templates')}>Create resume</button>
             </div>
           </div>
+          <div className="subheader">{services.auth.getUserName()}</div>
           <div className="main">
             <div className="resumes">
               {resumes.map(resume => 
