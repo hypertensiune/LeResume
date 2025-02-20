@@ -127,7 +127,7 @@ export default function Me({darkmode}: any) {
   return (
     <>
       <div id='logo' onClick={() => navigate('/')}>
-        <img src={darkmode ? logod : logol}/>
+        <img src={darkmode ? logol : logod}/>
       </div>
       <div className='me'>
         <div className="container">

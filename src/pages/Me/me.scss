@@ -3,6 +3,25 @@ div.me {
   display: flex;
   width: 100%;
   place-items: center;
+
+  &::after {
+    content: '';
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      radial-gradient(at bottom left, var(--background-color) 25%, transparent),
+      radial-gradient(at top right, var(--background-color) 15%, transparent),
+      var(--build-background-image-url);
+
+    z-index: -1;
+    opacity: 0.6;
+
+    background-size: contain;
+  }
   
   div.container {
     width: 70%;
