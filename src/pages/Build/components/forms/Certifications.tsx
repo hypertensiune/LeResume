@@ -11,14 +11,14 @@ function CertificationInput({ index, value, setValue, del }: { index: number, va
             label="Issuer"
             placeholder="Cisco Certifications"
             value={value.issuer}
-            onChange={(e: any) => setValue((draft: Certification[]) => { draft[index].issuer = e.target.value })}
+            onChange={(e: any) => setValue((draft: Resume) => { draft.data.certifications[index].issuer = e.target.value })}
             required
           />
           <Input type="text"
             label="Name"
             placeholder="CCNA Security"
             value={value.name}
-            onChange={(e: any) => setValue((draft: Certification[]) => { draft[index].name = e.target.value })}
+            onChange={(e: any) => setValue((draft: Resume) => { draft.data.certifications[index].name = e.target.value })}
             required
           />
         </div>
@@ -27,7 +27,7 @@ function CertificationInput({ index, value, setValue, del }: { index: number, va
             type="month"
             label="Date"
             value={value.date}
-            onChange={(e: any) => setValue((draft: Certification[]) => { draft[index].date = e.target.value })}
+            onChange={(e: any) => setValue((draft: Resume) => { draft.data.certifications[index].date = e.target.value })}
             required
           />
         </div>
@@ -43,7 +43,7 @@ export default function Certifications({ value, setValue }: { value: Resume, set
   const [id, setId] = useState(1);
 
   function removeCertification(id: number) {
-    setValue((draft: Resume) => draft.data.certifications.filter(el => el.id != id));
+    setValue((draft: Resume) => { draft.data.certifications = draft.data.certifications.filter(el => el.id != id) });
   }
 
   function addCertification() {

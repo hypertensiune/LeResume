@@ -11,7 +11,7 @@ function WorkInput({ index, value, setValue, del }: { index: number, value: Work
             placeholder="React developer"
             icon="fa-solid fa-briefcase"
             value={value.position}
-            onChange={(e: any) => setValue((draft: Work[]) => { draft[index].position = e.target.value })}
+            onChange={(e: any) => setValue((draft: Resume) => { draft.data.work[index].position = e.target.value })}
             required
           />
         </div>
@@ -21,14 +21,14 @@ function WorkInput({ index, value, setValue, del }: { index: number, value: Work
             placeholder="Facebook"
             value={value.company}
             icon="fa-solid fa-building"
-            onChange={(e: any) => setValue((draft: Work[]) => { draft[index].company = e.target.value })}
+            onChange={(e: any) => setValue((draft: Resume) => { draft.data.work[index].company = e.target.value })}
           />
           <Input type="text"
             label="Location"
             placeholder="Menlo Park, CA"
             value={value.location}
             icon="fa-solid fa-location-dot"
-            onChange={(e: any) => setValue((draft: Work[]) => { draft[index].location = e.target.value })}
+            onChange={(e: any) => setValue((draft: Resume) => { draft.data.work[index].location = e.target.value })}
           />
         </div>
         <div className="row">
@@ -36,19 +36,19 @@ function WorkInput({ index, value, setValue, del }: { index: number, value: Work
             type="month"
             label="Start"
             value={value.start}
-            onChange={(e: any) => setValue((draft: Work[]) => { draft[index].start = e.target.value })}
+            onChange={(e: any) => setValue((draft: Resume) => { draft.data.work[index].start = e.target.value })}
             required
           />
           <Input
             type="month"
             label="End"
             value={value.end}
-            onChange={(e: any) => setValue((draft: Work[]) => { draft[index].end = e.target.value })}
+            onChange={(e: any) => setValue((draft: Resume) => { draft.data.work[index].end = e.target.value })}
             required
           />
         </div>
         <div className="row">
-          <Description initialValue={value.description} onInput={(input: string[]) => setValue((draft: Project[]) => { draft[index].description = input })} />
+          <Description initialValue={value.description} onInput={(input: string[]) => setValue((draft: Resume) => { draft.data.work[index].description = input })} />
         </div>
         <div className="row">
           <Button text="Delete" del onClick={del} />
@@ -62,7 +62,7 @@ export default function Work({ value, setValue }: { value: Resume, setValue: Fun
   const [id, setId] = useState(1);
 
   function removeWork(id: number) {
-    setValue((draft: Resume) => draft.data.work.filter(el => el.id != id))
+    setValue((draft: Resume) => { draft.data.work = draft.data.work.filter(el => el.id != id) });
   }
 
   function addWork() {

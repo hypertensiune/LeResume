@@ -6,17 +6,15 @@ import { Button, Input, Description } from './common'
 function ProjectInput({ value, index, setValue, del }: { value: Project, index: number, setValue: Function, del: Function }) {
 
   function handleLangClick(lang: string) {
-    setValue((draft: Project[]) => {
-      if (draft[index].languages.includes(lang)) {
-        draft[index].languages.filter(el => el != lang);
+    setValue((draft: Resume) => {
+      if (draft.data.projects[index].languages.includes(lang)) {
+        draft.data.projects[index].languages.filter(el => el != lang);
       }
       else {
-        draft[index].languages.push(lang)
+        draft.data.projects[index].languages.push(lang)
       }
     });
   }
-
-  console.log("PROJECTINPUT", value.description);
 
   return (
     <>
@@ -26,7 +24,7 @@ function ProjectInput({ value, index, setValue, del }: { value: Project, index: 
             label="Project Name"
             placeholder="My project"
             value={value.name}
-            onChange={(e: any) => setValue((draft: Project[]) => { draft[index].name = e.target.value })}
+            onChange={(e: any) => setValue((draft: Resume) => { draft.data.projects[index].name = e.target.value })}
             required
           />
         </div>
@@ -53,18 +51,18 @@ function ProjectInput({ value, index, setValue, del }: { value: Project, index: 
             placeholder="github.com/johndoe/project"
             icon="fa-brands fa-github"
             value={value.github}
-            onChange={(e: any) => setValue((draft: Project[]) => { draft[index].github = e.target.value })}
+            onChange={(e: any) => setValue((draft: Resume) => { draft.data.projects[index].github = e.target.value })}
           />
           <Input type="text"
             label="Website"
             placeholder="project.com"
             value={value.website}
             icon="fa-solid fa-globe"
-            onChange={(e: any) => setValue((draft: Project[]) => { draft[index].website = e.target.value })}
+            onChange={(e: any) => setValue((draft: Resume) => { draft.data.projects[index].website = e.target.value })}
           />
         </div>
         <div className="row">
-          <Description initialValue={value.description} onInput={(input: string[]) => setValue((draft: Project[]) => { draft[index].description = input })} />
+          <Description initialValue={value.description} onInput={(input: string[]) => setValue((draft: Resume) => { draft.data.projects[index].description = input })} />
         </div>
         <div className="row">
           <Button text="Delete" del onClick={del} />
@@ -84,7 +82,7 @@ export default function Projects({ github, value, setValue }: { github: string, 
   }, []);
 
   function removeProject(id: number) {
-    setValue((draft: Resume) => draft.data.projects.filter(el => el.id != id))
+    setValue((draft: Resume) => { draft.data.projects = draft.data.projects.filter(el => el.id != id) });
   }
 
   function addProject() {

@@ -11,13 +11,13 @@ function SkillInput({ index, value, setValue, del }: { index: number, value: Ski
             label="Skill Group"
             placeholder="Hard Skills"
             value={value.type}
-            onChange={(e: any) => setValue((draft: SkillGroup[]) => { draft[index].type = e.target.value })}
+            onChange={(e: any) => setValue((draft: Resume) => { draft.data.skills[index].type = e.target.value })}
             required
           />
           <Input type="text"
             label="Skills"
             value={value.skills}
-            onChange={(e: any) => setValue((draft: SkillGroup[]) => { draft[index].skills = e.target.value })}
+            onChange={(e: any) => setValue((draft: Resume) => { draft.data.skills[index].skills = e.target.value })}
           />
         </div>
         <div className="row">
@@ -32,7 +32,7 @@ export default function Skills({ value, setValue }: { value: Resume, setValue: F
   const [id, setId] = useState(1);
 
   function removeSkill(id: number) {
-    setValue((draft: Resume) => draft.data.skills.filter(el => el.id != id))
+    setValue((draft: Resume) => {  draft.data.skills = draft.data.skills.filter(el => el.id != id) });
   }
 
   function addSkill() {

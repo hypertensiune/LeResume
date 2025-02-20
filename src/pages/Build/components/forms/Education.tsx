@@ -12,7 +12,7 @@ function EducationInput({ index, value, setValue, del }: { index: number, value:
             placeholder="University of X"
             icon="fa-solid fa-building-columns"
             value={value.institution}
-            onChange={(e: any) => setValue((draft: Education[]) => { draft[index].institution = e.target.value })}
+            onChange={(e: any) => setValue((draft: Resume) => { draft.data.education[index].institution = e.target.value })}
             required
           />
           <Input type="text"
@@ -20,7 +20,7 @@ function EducationInput({ index, value, setValue, del }: { index: number, value:
             placeholder="Bachelor in Computer Science"
             icon="fa-solid fa-certificate"
             value={value.degree}
-            onChange={(e: any) => setValue((draft: Education[]) => { draft[index].degree = e.target.value })}
+            onChange={(e: any) => setValue((draft: Resume) => { draft.data.education[index].degree = e.target.value })}
             required
           />
         </div>
@@ -29,14 +29,14 @@ function EducationInput({ index, value, setValue, del }: { index: number, value:
             type="month"
             label="Start"
             value={value.start}
-            onChange={(e: any) => setValue((draft: Education[]) => { draft[index].start = e.target.value })}
+            onChange={(e: any) => setValue((draft: Resume) => { draft.data.education[index].start = e.target.value })}
             required
           />
           <Input
             type="month"
             label="End"
             value={value.end}
-            onChange={(e: any) => setValue((draft: Education[]) => { draft[index].end = e.target.value })}
+            onChange={(e: any) => setValue((draft: Resume) => { draft.data.education[index].end = e.target.value })}
             required
           />
         </div>
@@ -52,13 +52,15 @@ export default function Education({ value, setValue }: { value: Resume, setValue
   const [id, setId] = useState(1);
 
   function removeEducation(id: number) {
-    setValue((draft: Resume) => draft.data.education.filter(el => el.id != id));
+    setValue((draft: Resume) => { draft.data.education = draft.data.education.filter(el => el.id != id) });
   }
 
   function addEducation() {
     setId(id + 1);
     setValue((draft: Resume) => { draft.data.education.push({ id: id, institution: "", degree: "", start: "", end: "" }) });
   }
+
+  console.log(value);
 
   return (
     <>

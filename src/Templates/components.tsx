@@ -116,7 +116,6 @@ export function EducationL({ education }: any) {
 }
 
 export function EducationI({ education }: any) {
-  console.log(education);
   return (
     <>
       <div className='education inline'>

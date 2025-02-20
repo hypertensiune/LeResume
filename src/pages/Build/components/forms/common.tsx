@@ -16,7 +16,7 @@ export function Button({ text, del, icon, onClick }: any) {
   return (
     <>
       {/* <button className={del ? "primary delete" : "primary"} onClick={onClick}> */}
-      <button className={del ? "primary" : "primary"} onClick={onClick}>
+      <button type='button' className={del ? "primary" : "primary"} onClick={onClick}>
         {icon && <i className={icon}></i>}
         {text}
       </button>
