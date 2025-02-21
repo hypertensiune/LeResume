@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { AppContext } from "@context/ProviderContext";
@@ -13,12 +13,31 @@ export default function AppMenu({darkmode, setDarkmode}: any) {
   
   const isAuthenticated = useAuth(services.auth);
 
+  const ref = useRef<HTMLDivElement>(null);
+
+  // https://stackoverflow.com/questions/66626487/hiding-sidebar-component-on-outside-click
+  function handleOutsideClick(e: Event) {
+    const contains = ref?.current?.contains(e.target as Node);
+    const open = ref.current?.classList.contains('open');
+
+    if(open && !contains && (e.target as HTMLDivElement).id != 'menutoggle') {
+      setOpen(false);
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('click', handleOutsideClick);
+    return () => { 
+      document.removeEventListener('click', handleOutsideClick);
+    }
+  }, []);
+
   return (
     <div className='menu'>
       <div id='menutoggle' onClick={() => setOpen(!open)}>
         <i className="fa-solid fa-bars"></i>
       </div>
-      <div id='menu' className={open ? 'open' : ''}>
+      <div ref={ref} id='menu' className={open ? 'open' : ''}>
         <div style={{flexDirection: 'column', alignItems: 'flex-start'}} onClick={() => navigate('/me')}>
           <span style={{width: "100%"}}>
             <span style={{float: "left"}}>My account</span>
