@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { AppContext } from "@context/ProviderContext";
 import useAuth from "@hooks/useAuth";
+import { clearLocalStorage } from "@services/localstorage";
 
 export default function AppMenu({darkmode, setDarkmode}: any) {
 
@@ -67,6 +68,7 @@ export default function AppMenu({darkmode, setDarkmode}: any) {
         <div onClick={() => {
           if(isAuthenticated) {
             services.auth.signOut();
+            clearLocalStorage();
             navigate('/');
           } else {
             navigate('/signin');

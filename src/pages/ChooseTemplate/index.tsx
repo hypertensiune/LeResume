@@ -15,6 +15,7 @@ import logod from '@assets/logo.svg';
 import logol from '@assets/logolight.svg';
 
 import './choosetemplate.scss';
+import useAuth from '@hooks/useAuth';
 
 function Template({ src, onClick, ...props }: any) {
   return (
@@ -33,15 +34,24 @@ export default function ChooseTemplate({darkmode}: any) {
   const navigate = useNavigate();
   const services = useContext(AppContext);
 
+  const auth = useAuth(services.auth);
+
   async function prepareForNewBuild(templateID: number) {
     clearLocalStorage();
     
     const resume = {...emptyResume};
-    const id = await services.db.getMetadata(services.auth.getUserId(), 'increment');
-    services.db.setMetadata(services.auth.getUserId(), 'increment', parseInt(id) + 1);
 
-    resume.id = id;
-    resume.name = `Resume #${id}`;
+    if(auth) {
+      const id = await services.db.getMetadata(services.auth.getUserId(), 'increment');
+      services.db.setMetadata(services.auth.getUserId(), 'increment', parseInt(id) + 1);
+  
+      resume.id = id;
+      resume.name = `Resume #${id}`;
+    } else {
+      resume.id = 0;
+      resume.name = 'Resume #Local';
+    }
+
     resume.template = templateID;
     resume.created = getTimestamp();
 

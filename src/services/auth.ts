@@ -22,13 +22,18 @@ export class Authentication {
 
   public getUserName() {
     const auth = getAuth(this.app);
-    const name = auth.currentUser!.displayName;
+
+    if(auth == null || auth.currentUser == null) {
+      return '';
+    }
+
+    const name = auth.currentUser.displayName;
     
     if(name != null) {
       return name;
     }
 
-    return auth.currentUser!.email;
+    return auth.currentUser.email;
   }
 
   public async signInWithEmail(email: string, password: string) {

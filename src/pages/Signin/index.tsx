@@ -7,6 +7,7 @@ import logod from '@assets/logo.svg';
 import logol from '@assets/logolight.svg';
 
 import './signin.scss'
+import { clearLocalStorage } from '@services/localstorage';
 
 export default function Signin({darkmode}: any) {
 
@@ -20,6 +21,7 @@ export default function Signin({darkmode}: any) {
   async function signIn(user: string, password: string, navigate: NavigateFunction) {
     const result = await services.auth.signInWithEmail(user, password);
     if(result) {
+      clearLocalStorage();
       navigate('/me');
     }
   }
@@ -27,6 +29,7 @@ export default function Signin({darkmode}: any) {
   async function signInGoogle() {
     const result = await services.auth.signInWithGoogle();
     if(result) {
+      clearLocalStorage();
       navigate('/me');
     }
   }
@@ -34,7 +37,7 @@ export default function Signin({darkmode}: any) {
   return (
     <>
       <div id='logo' onClick={() => navigate('/')}>
-        <img src={darkmode ? logod : logol}/>
+        <img src={darkmode ? logol : logod}/>
       </div>
       <div className="login">
         <h2 style={{textAlign: "center"}}>Sign In</h2>
@@ -46,18 +49,16 @@ export default function Signin({darkmode}: any) {
           <i className='fa-solid fa-lock'></i>
           <input type='text' placeholder='Password' onChange={e => setPassword(e.target.value)} />
         </div>
-        <a onClick={() => signIn(user, password, navigate)}>Sign in</a>
+        <button className='primary' onClick={() => signIn(user, password, navigate)}>Sign in</button>
         <div className="separator">
           <span className='line'/>
           <span>OR</span>
           <span className='line'/>
         </div>
-        <a onClick={() => signInGoogle()}>
-          <span>
-            <i className="fa-brands fa-google"></i>
-            <span style={{marginLeft: "3%"}}>Sign in with Google</span>            
-          </span>
-        </a>
+        <button className='primary' onClick={() => signInGoogle()}>
+          <i className="fa-brands fa-google" style={{marginRight: '3%'}}></i>
+          Sign in with Google
+        </button>
       </div>
     </>
   )

@@ -44,7 +44,7 @@ function App() {
         <Route path='/build' element={<Build />} />
         <Route path='/templates' element={<ChooseTemplate darkmode={darkmode} />} />
         <Route path='/me' element={<Me darkmode={darkmode}/>}/>
-        <Route path='/signin' element={<Signin/>} />
+        <Route path='/signin' element={<Signin darkmode={darkmode}/>} />
         <Route path='/shared/:user/:rid' element={<Shared/>}/>
         <Route path='*' element={<h1>404 Page not found!</h1>} />
       </Routes>

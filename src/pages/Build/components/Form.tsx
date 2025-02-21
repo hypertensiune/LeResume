@@ -8,6 +8,7 @@ import { getTimestamp } from '@services/time';
 import * as Forms from './forms';
 
 import roadmap from '@assets/roadmap';
+import useAuth from '@hooks/useAuth';
 
 const steps = ["basics", "education", "projects", "work", "skills", "certitifications"];
 
@@ -17,6 +18,7 @@ export default function Form({ resume, setResume } : { resume: Resume, setResume
   const step = steps.findIndex(step => step == searchParams.get("step"));
 
   const services = useContext(AppContext);
+  const auth = useAuth(services.auth);
 
   const saveDataToStorage = () => {
     const time = getTimestamp();
@@ -27,7 +29,10 @@ export default function Form({ resume, setResume } : { resume: Resume, setResume
     });
     
     saveResumeToLocalStorage(resume);
-    services.db.uploadResume(services.auth.getUserId(), resume);
+
+    if(auth) {
+      services.db.uploadResume(services.auth.getUserId(), resume);
+    }
     
     localStorage.setItem("step", steps[step]);
   }
