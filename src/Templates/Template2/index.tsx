@@ -1,10 +1,10 @@
 import { Col, Header, IconText, Line, Main, Resume, SectionL, Work, Text, EducationL, Project, IconLink } from '../components';
 import './t2.scss'
 
-export default function Template2({ mref, data }: { mref: any, data: ResumeData }) {
+export default function Template2({ mref, scale, data }: { mref: any, scale: number, data: ResumeData }) {
   return (
     <>
-      <Resume id='t2' mref={mref}>
+      <Resume id='t2' mref={mref} scale={scale}>
         <Header name={data.basics.firstname + ' ' + data.basics.lastname} title={data.basics.jobtitle} />
         <Main>
           <Col width='35%' className='left'>

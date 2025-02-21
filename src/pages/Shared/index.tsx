@@ -31,6 +31,8 @@ export default function Shared() {
   }
 
   return (
-    <Resume resume={resume}/>
+    <div className="shared">
+      <Resume resume={resume} initialScale={1} ratio={3.2}/>
+    </div>
   )
 }

@@ -1,14 +1,10 @@
 import { Children } from 'react'
 
 import { languages } from '@hooks/useGithub'
-import useScale from '@hooks/useScale';
 
 const parseDate = (input: string) => ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][parseInt(input.slice(-2)) - 1] + " " + input.slice(0, 4);
 
-export function Resume({ mref, id, children }: any) {
-
-  const scale = useScale();
-
+export function Resume({ mref, id, children, scale }: any) {
   return (
     <>
       <div ref={mref} className="a4 pdf resume" id={id} style={{ transform: `scale(${scale})` }}>

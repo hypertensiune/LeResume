@@ -16,7 +16,7 @@ export default function Build() {
       <div className='build'>
         <div className='build-container'>
           <Form resume={resume} setResume={setResume}/>
-          <Resume resume={resume}/>
+          <Resume resume={resume} initialScale={0.7} ratio={2.5}/>
         </div>
       </div>
     </>

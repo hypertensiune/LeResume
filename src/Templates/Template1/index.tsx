@@ -1,10 +1,10 @@
 import { Col, EducationI, Header, IconText, Line, Main, Project, Resume, SectionI, SectionL, Text, Work, IconLink } from '../components';
 import './t1.scss';
 
-const Template1 = ({ mref, data }: { mref: any, data: ResumeData }) => {
+const Template1 = ({ mref, scale, data }: { mref: any, scale: number, data: ResumeData }) => {
   return (
     <>
-      <Resume id='t1' mref={mref}>
+      <Resume id='t1' mref={mref} scale={scale}>
         <Header name={data.basics.firstname + " " + data.basics.lastname}>
           <SectionI>
             {data.basics.phone && <IconText icon='fa-solid fa-phone' text={data.basics.phone} />}
