@@ -26,7 +26,6 @@ div.home {
     width: 90%;
     margin: 0 auto;
     display: flex;
-    flex-direction: row;
     place-items: center;
   }
 
@@ -51,46 +50,35 @@ div.home {
     }
   }
 
-  @media (max-width: 1440px) {
-    img {
-      width: 40%;
-    }
-  }
+  // @media (max-width: 1440px) {
+  //   img {
+  //     width: 40%;
+  //   }
+  // }
 
-  @media (max-width: 990px) {
+  @media (max-width: 660px) {
     div.wrapper {
       flex-direction: column;
+      height: 80%;
+      justify-content: center;
+      gap: 5em;
     }
 
-    div.buttons {
-      display: flex;
-      justify-content: space-around;
+    div.logo {
+      margin: 5% auto;
     }
 
     img {
-      width: 65%;
-      margin-top: 30px;
+      width: 70%;
     }
 
-    h1,
-    h2 {
-      margin: 0;
-      text-align: center;
-    }
-
-    h2 {
-      margin-bottom: 15px;
-    }
-  }
-
-  @media (max-width: 460px) {
     div.buttons {
-      flex-direction: column;
-      place-items: center;
+      margin: 5% auto;
+      width: fit-content;
+    }
 
-      a:not(:last-child) {
-        margin: 0 0 15px 0;
-      }
+    h1 {
+      text-align: center;
     }
   }
 }

@@ -145,13 +145,13 @@ div.a4 {
 }
 
 
-@media (min-width: 1200px) {
+@media (min-width: 1000px) {
   #collapse {
     display: none;
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1000px) {
   html {
     font-size: 10px;
   }

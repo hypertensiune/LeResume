@@ -46,8 +46,16 @@ div.me {
 
   div.main {
     margin-top: 2%;
+    flex-grow: 1;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    overflow: scroll;
 
     div.resumes {
+
       div.resumeCard {
 
         padding: 1%;
@@ -66,25 +74,45 @@ div.me {
           border: 1px solid var(--resume-card-border-hover);
         }
 
-        div.details {
-          margin-left: 2%;
+        div.details-container {
           display: flex;
           flex-grow: 1;
-          flex-direction: column;
-          justify-content: space-between;
-          
-          font-weight: 500;
 
-          span {
-            color: var(--text-secondary);
-            display: block;
+          @media (max-width: 1000px) {
+            // flex-direction: column;
+            flex-grow: 3;
+          }
+
+          @media (max-width: 600px) {
+            flex-direction: column;
+          }
+
+
+          div.details {
+            margin-left: 2%;
+            display: flex;
+            flex-grow: 1;
+            flex-direction: column;
+            justify-content: space-between;
+            
+            font-weight: 500;
+  
+            span {
+              color: var(--text-secondary);
+              display: block;
+            }
           }
         }
+
 
         div.actions {
           display: flex;
           flex-direction: column;
           justify-items: start;
+
+          @media (max-width: 600px) {
+            flex-direction: row;
+          }
 
           span {
             color: var(--text-secondary);
@@ -137,18 +165,13 @@ div.me {
         font-size: 2rem;
         margin: 0 0 4% 0;
         font-weight: 400;
-        color: white;
+        color: var(--text-primary);
       }
 
       h2 {
         font-size: 1.2rem;
         font-weight: 400;
-        margin-bottom: 2%;
-
-        &.danger {
-          color: var(--resume-danger-text);
-          margin-bottom: 10%;
-        }
+        margin-bottom: 10%;
       }
 
       button.danger {
@@ -171,61 +194,68 @@ div.me {
     border-radius: 4px;
     position: relative;
     display: block;
-  }
 
-  a {
-    border-radius: 8px;
-    border: none;
-    padding: 0.8em 1.6em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    background-color: var(--button-background1);
-    color: var(--button-color1);
-    cursor: pointer;
-    transition: all 0.25s;
-
-    &:not(:last-child) {
-      margin-right: 0.5em;
+    @media (max-width: 1000px) {
+      flex-grow: 1;
     }
 
-    text-decoration: none;
-    display: inline-block;
-  }
-
-  a:hover {
-    background-color: var(--button-hover1);
-  }
-
-  @media (max-width: 990px) {
-    div.wrapper {
-      flex-direction: column;
-    }
-
-    div.buttons {
-      display: flex;
-      justify-content: space-around;
-    }
-
-    h1,
-    h2 {
-      margin: 0;
-      text-align: center;
-    }
-
-    h2 {
-      margin-bottom: 15px;
+    @media (max-width: 600px) {
+      flex-grow: 3;
     }
   }
 
-  @media (max-width: 460px) {
-    div.buttons {
-      flex-direction: column;
-      place-items: center;
+  // a {
+  //   border-radius: 8px;
+  //   border: none;
+  //   padding: 0.8em 1.6em;
+  //   font-size: 1em;
+  //   font-weight: 500;
+  //   font-family: inherit;
+  //   background-color: var(--button-background1);
+  //   color: var(--button-color1);
+  //   cursor: pointer;
+  //   transition: all 0.25s;
 
-      a:not(:last-child) {
-        margin: 0 0 15px 0;
-      }
-    }
-  }
+  //   &:not(:last-child) {
+  //     margin-right: 0.5em;
+  //   }
+
+  //   text-decoration: none;
+  //   display: inline-block;
+  // }
+
+  // a:hover {
+  //   background-color: var(--button-hover1);
+  // }
+
+  // @media (max-width: 990px) {
+  //   div.wrapper {
+  //     flex-direction: column;
+  //   }
+
+  //   div.buttons {
+  //     display: flex;
+  //     justify-content: space-around;
+  //   }
+
+  //   h1,
+  //   h2 {
+  //     margin: 0;
+  //     text-align: center;
+  //   }
+
+  //   h2 {
+  //     margin-bottom: 15px;
+  //   }
+  // }
+
+  // @media (max-width: 1000px) {
+  //   div.details-container {
+  //     flex-direction: column;
+
+  //     div.actions {
+  //       flex-direction: row;
+  //     }
+  //   }
+  // }
 }

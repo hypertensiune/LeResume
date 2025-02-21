@@ -22,46 +22,47 @@ function ResumeCard({resume, onClick, onDelete, onShare}: {resume: Resume, onCli
     <>
       <div className="resumeCard" onClick={() => onClick()}>
         <img src={tmp1}/>
-        <div className="details">
-          <div>
-            <span style={{"color": "var(--resume-card-text-primary)"}}>{resume.name}</span>
-            <span>Template #1</span>
+        <div className="details-container">
+          <div className="details">
+            <div>
+              <span style={{"color": "var(--resume-card-text-primary)"}}>{resume.name}</span>
+              <span>Template #1</span>
+            </div>
+            <div>
+              <span style={{"fontSize": "0.8rem"}}>Created {getDateFromTimestamp(resume.created)}</span>
+              <span style={{"fontSize": "0.8rem"}}>Edited {getDateFromTimestamp(resume.updated)}</span>
+            </div>
           </div>
-          <div>
-            <span style={{"fontSize": "0.8rem"}}>Created {getDateFromTimestamp(resume.created)}</span>
-            <span style={{"fontSize": "0.8rem"}}>Edited {getDateFromTimestamp(resume.updated)}</span>
-          </div>
-        </div>
-        <div className="actions">
-          <span><i className="fa-solid fa-download"></i></span>
-          {resume.shared && 
-            <span onClick={e => { 
-              alert("Views: " + resume.views); 
-              e.stopPropagation(); 
+          <div className="actions">
+            <span><i className="fa-solid fa-download"></i></span>
+            {resume.shared && 
+              <span onClick={e => { 
+                alert("Views: " + resume.views); 
+                e.stopPropagation(); 
+              }}>
+                <i className="fa-solid fa-eye"></i>
+              </span>
+            }
+            <div style={{"flexGrow": "1"}} onClick={e => {
+              e.stopPropagation();
+              onShare();
             }}>
-              <i className="fa-solid fa-eye"></i>
-            </span>
-          }
-          <div style={{"flexGrow": "1"}} onClick={e => {
-            e.stopPropagation();
-            onShare();
-          }}>
-            <span><i className="fa-solid fa-share-nodes"></i></span>
-          </div>
-          <div className="danger" onClick={e => {
-            e.stopPropagation();
-            setDialogOpen(true);
-          }}>
-            <span><i className="fa-solid fa-trash"></i></span>
+              <span><i className="fa-solid fa-share-nodes"></i></span>
+            </div>
+            <div className="danger" onClick={e => {
+              e.stopPropagation();
+              setDialogOpen(true);
+            }}>
+              <span><i className="fa-solid fa-trash"></i></span>
+            </div>
           </div>
         </div>
       </div>
       {dialogOpen &&
         <div className="dialog">
           <div className="wrapper">
-            <h1>Delete resume</h1>
+            <h1>Delete resume?</h1>
             <h2>This resume will be deleted along with all data and views.</h2>
-            <h2 className="danger">Warning, action is not reversible!</h2>
             <div>
               <button className="primary" onClick={() => setDialogOpen(false)}>Cancel</button>
               <button 
