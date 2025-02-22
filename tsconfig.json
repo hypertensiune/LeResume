@@ -28,6 +28,7 @@
       "@pages/*": ["./src/pages/*"],
       "@services/*": ["./src/services/*"],
       "@templates/*": ["./src/templates/*"],
+      "@components/*": ["./src/components/*"],
     }
   },
   "include": ["src"],

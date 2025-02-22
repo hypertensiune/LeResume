@@ -4,6 +4,6 @@ export function getTimestamp() {
 
 export function getDateFromTimestamp(timestamp: string) {
   const millis = Number.parseInt(timestamp);
-  const date = new Date(millis).toLocaleString();
+  const date = new Date(millis).toLocaleString('en-US', {month: 'short', day: '2-digit', year: 'numeric'});
   return date;
 }

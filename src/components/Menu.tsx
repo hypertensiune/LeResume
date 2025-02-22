@@ -1,11 +1,13 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { AppContext } from "@context/ProviderContext";
 import useAuth from "@hooks/useAuth";
+import { AppContext } from "@context/ProviderContext";
 import { clearLocalStorage } from "@services/localstorage";
 
-export default function AppMenu({darkmode, setDarkmode}: any) {
+import './components.scss';
+
+export default function Menu({darkmode, setDarkmode}: any) {
 
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();

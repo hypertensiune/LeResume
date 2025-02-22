@@ -31,6 +31,10 @@ div.me {
     display: flex;
     flex-direction: column;
     justify-content: start;
+
+    @media (max-width: 580px) {
+      width: 90%;
+    }
   }
 
   div.header {
@@ -56,17 +60,21 @@ div.me {
 
     div.resumes {
 
-      div.resumeCard {
+      display: grid;
+      gap: 2em;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
 
-        padding: 1%;
-        margin: 1% 0 1% 0;
+      div.resumeCard {
+        padding: 24px;
+        height: 176px;
         background-color: var(--resume-card-background);
         border: 1px solid var(--resume-card-border);
         border-radius: 10px;
         box-shadow: var(--resume-card-shadow);
+        box-sizing: border-box;
         cursor: pointer;
 
-        display: flex;
+        // display: flex;
 
         transition: all 0.25s;
 
@@ -74,52 +82,79 @@ div.me {
           border: 1px solid var(--resume-card-border-hover);
         }
 
-        div.details-container {
+        div.content {
           display: flex;
-          flex-grow: 1;
-
-          @media (max-width: 1000px) {
-            // flex-direction: column;
-            flex-grow: 3;
-          }
-
-          @media (max-width: 600px) {
-            flex-direction: column;
-          }
-
+          height: 100%;
+          gap: 1em;
 
           div.details {
-            margin-left: 2%;
             display: flex;
             flex-grow: 1;
             flex-direction: column;
             justify-content: space-between;
-            
             font-weight: 500;
+
+            &-header {
+              display: flex;
+              gap: 1em;
+            }
   
             span {
               color: var(--text-secondary);
               display: block;
             }
+
+            a.link {
+              text-decoration: none;
+              color: var(--text-link);
+              font-weight: 600;
+              font-size: 14px;
+
+              &:hover {
+                text-decoration: underline;
+              }
+            }
           }
         }
 
-
         div.actions {
-          display: flex;
-          flex-direction: column;
-          justify-items: start;
 
-          @media (max-width: 600px) {
-            flex-direction: row;
+          div.more {
+            position: absolute;
+
+            box-shadow: var(--resume-card-shadow);
+            background-color: var(--resume-card-background);
+            border: 1px solid var(--resume-card-border);
+            border-radius: 12px;
+            
+            padding: 8px;
+            font-size: 14px;
+
+            z-index: 1000;
+            user-select: none;
+
+            span {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px 8px;
+              border-radius: 8px;
+              gap: 2em;
+
+              &:hover {
+                background-color: var(--menu-hover-bg);
+              }
+            }
           }
 
-          span {
+          & > span {
             color: var(--text-secondary);
             display: block;
             font-size: 1.2rem;
             padding: 4px;
             border-radius: 3px;
+
+            text-align: end;
 
             &:hover {
               background-color: var(--hover-bg);
@@ -129,53 +164,14 @@ div.me {
             transition: all 0.25s;
           }
 
-          div.danger {
-            span {
-              color: adjust-color($color: #d93036, $alpha: 0.5);
-              &:hover {
-                color: #d93036;
-              }
+          span.danger {
+            bottom: 0;
+            color: adjust-color($color: #d93036, $alpha: 0.5);
+            &:hover {
+              color: #d93036;
             }
           }
         }
-      }
-    }
-  }
-
-  div.dialog {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 1000;
-
-    div.wrapper {
-      padding: 1%;
-      background-color: var(--resume-card-background);
-      border: 1px solid var(--resume-card-border);
-      border-radius: 5px;
-      cursor: pointer;
-
-      h1 {
-        font-size: 2rem;
-        margin: 0 0 4% 0;
-        font-weight: 400;
-        color: var(--text-primary);
-      }
-
-      h2 {
-        font-size: 1.2rem;
-        font-weight: 400;
-        margin-bottom: 10%;
-      }
-
-      button.danger {
-        float: right;
       }
     }
   }
@@ -190,10 +186,10 @@ div.me {
   }
 
   img {
-    width: 10%;
+    height: 100%;
     border-radius: 4px;
     position: relative;
-    display: block;
+    display: inline;
 
     @media (max-width: 1000px) {
       flex-grow: 1;
@@ -203,59 +199,4 @@ div.me {
       flex-grow: 3;
     }
   }
-
-  // a {
-  //   border-radius: 8px;
-  //   border: none;
-  //   padding: 0.8em 1.6em;
-  //   font-size: 1em;
-  //   font-weight: 500;
-  //   font-family: inherit;
-  //   background-color: var(--button-background1);
-  //   color: var(--button-color1);
-  //   cursor: pointer;
-  //   transition: all 0.25s;
-
-  //   &:not(:last-child) {
-  //     margin-right: 0.5em;
-  //   }
-
-  //   text-decoration: none;
-  //   display: inline-block;
-  // }
-
-  // a:hover {
-  //   background-color: var(--button-hover1);
-  // }
-
-  // @media (max-width: 990px) {
-  //   div.wrapper {
-  //     flex-direction: column;
-  //   }
-
-  //   div.buttons {
-  //     display: flex;
-  //     justify-content: space-around;
-  //   }
-
-  //   h1,
-  //   h2 {
-  //     margin: 0;
-  //     text-align: center;
-  //   }
-
-  //   h2 {
-  //     margin-bottom: 15px;
-  //   }
-  // }
-
-  // @media (max-width: 1000px) {
-  //   div.details-container {
-  //     flex-direction: column;
-
-  //     div.actions {
-  //       flex-direction: row;
-  //     }
-  //   }
-  // }
 }

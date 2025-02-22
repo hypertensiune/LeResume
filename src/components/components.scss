@@ -1,0 +1,138 @@
+#menu {
+  position: absolute;
+  top: 6%;
+  right: 10px;
+  min-width: 200px;
+  
+  padding: 0.5%;
+  border: 1px solid var(--resume-card-border);
+  border-radius: 10px;
+  background-color: var(--resume-card-background);
+
+  visibility: hidden;
+  z-index: 100;
+
+  &.open {
+    visibility: visible;
+  }
+
+  div {
+    padding: 5%;
+    margin: 5px 0 5px 0;
+
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:hover {
+      background-color: var(--menu-hover-bg);
+    }
+
+    transition: background-color 0.25s;
+
+    cursor: pointer;
+  }
+
+  span {
+    white-space: nowrap;
+
+    &.delimiter {
+      border-top: 1px solid var(--resume-card-border);
+      display: block;
+      width: 100%;
+      height: 1px;
+    }
+  }
+}
+
+#menutoggle {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  padding: 10px;
+  margin: 5px;
+  z-index: 100;
+  cursor: pointer;
+
+  transition: all 0.25s;
+  border-radius: 2px;
+
+  &:hover {
+    background-color: var(--menu-hover-bg);
+  }
+}
+
+
+
+
+div.overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+
+  div.dialog {
+    background-color: var(--resume-card-background);
+    border: 1px solid var(--resume-card-border);
+    border-radius: 10px;
+    cursor: pointer;
+
+    width: clamp(200px, 30em, 90%);
+
+    div.title {
+      padding: 5%;
+      border-radius: 10px 10px 0 0;
+      background-color: var(--background-color);
+
+      h1 {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 4%;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+        font-weight: 400;
+      }
+    }
+
+    div.body {
+      padding: 5%;
+      background-color: #111111;
+
+      input {
+        width: calc(100% - 1.6rem);
+      }
+
+      label {
+        display: inline-block;
+        margin: 0;
+      }
+
+      border-top: 1px solid var(--resume-card-border);
+      border-bottom: 1px solid var(--resume-card-border);
+    }
+
+    div.footer {
+      padding: 3%;
+      border-radius: 0 0 10px 10px;
+      background-color: var(--resume-card-background);
+
+      button:last-child {
+        float: right;
+      }
+
+      button.delete {
+        border-color: transparent;
+      }
+    }
+  }
+}

@@ -5,7 +5,7 @@ import { enableMapSet } from 'immer'
 
 import { ProviderContext } from '@context/ProviderContext'
 
-import AppMenu from './AppMenu.tsx'
+import Menu from '@components/Menu.tsx'
 
 import ChooseTemplate from '@pages/ChooseTemplate'
 import Home from '@pages/Home'
@@ -38,7 +38,7 @@ function App() {
 
   return (
     <ProviderContext>
-      <AppMenu darkmode={darkmode} setDarkmode={setDarkmode}/>
+      <Menu darkmode={darkmode} setDarkmode={setDarkmode}/>
       <Routes>
         <Route path='/' element={<Home darkmode={darkmode} />} />
         <Route path='/build' element={<Build />} />
