@@ -95,10 +95,10 @@ div.overlay {
       h1 {
         font-size: 2rem;
         font-weight: 600;
-        margin-bottom: 4%;
       }
-
+      
       h2 {
+        margin-top: 4%;
         font-size: 1.2rem;
         font-weight: 400;
       }
@@ -119,6 +119,10 @@ div.overlay {
 
       border-top: 1px solid var(--resume-card-border);
       border-bottom: 1px solid var(--resume-card-border);
+
+      form {
+        padding-bottom: 0;
+      }
     }
 
     div.footer {

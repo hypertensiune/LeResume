@@ -24,8 +24,22 @@ function ResumeCard({resume, setResumes}: {resume: Resume, setResumes: Updater<R
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
 
+  const [newName, setNewName] = useState(resume.name);
+
   const services = useContext(AppContext);
   const navigate = useNavigate();
+
+  function onNameChange() {
+    setResumes(draft => { 
+      // Find the index of the resume to change name
+      const index = draft.findIndex(r => r.name === resume.name)
+      
+      // Delete from the database, edit and upload the edited one
+      services.db.deleteResume(services.auth.getUserId(), draft[index]);
+      draft[index].name = newName;
+      services.db.uploadResume(services.auth.getUserId(), draft[index]);
+    });
+  }
 
   function onDelete() {
     services.db.deleteResume(services.auth.getUserId(), resume);
@@ -83,8 +97,17 @@ function ResumeCard({resume, setResumes}: {resume: Resume, setResumes: Updater<R
                     setEditDialogOpen(true); 
                     setMoreOpen(false);
                   }}>
-                  Edit 
+                  Edit name 
                   <i className="fa-solid fa-pen"></i>
+                </span>
+                <span 
+                  onClick={(e) => { 
+                    e.stopPropagation(); 
+                    saveResumeToLocalStorage(resume);
+                    navigate('/templates?change');
+                  }}>
+                  Change template 
+                  <i className="fa-solid fa-file"></i>
                 </span>
                 <span 
                   onClick={(e) => { 
@@ -112,18 +135,15 @@ function ResumeCard({resume, setResumes}: {resume: Resume, setResumes: Updater<R
       <Dialog 
         open={editDialogOpen} 
         type='edit'
-        onClose={() => setEditDialogOpen(false)} onConfirm={() => {
-          onDelete();
+        onClose={() => setEditDialogOpen(false)} 
+        onConfirm={() => {
+          onNameChange();
           setEditDialogOpen(false);
         }}>
-        <Title text="Edit resume" description="Edit resume's name and change the used template."/>
+        <Title text="Change name"/>
         <Body>
           <form>
-            <Input type='text' label='Resume name' value={resume.name}/>
-            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-              <label>Current template: {resume.template}</label>
-              <button className='secondary'>Change template</button>
-            </div>
+            <Input type='text' label='Resume name' value={newName} onChange={(e: any) => setNewName(e.target.value)} />
           </form>
         </Body>
       </Dialog>
@@ -131,7 +151,8 @@ function ResumeCard({resume, setResumes}: {resume: Resume, setResumes: Updater<R
       <Dialog 
         open={deleteDialogOpen} 
         type='delete'
-        onClose={() => setDeleteDialogOpen(false)} onConfirm={() => {
+        onClose={() => setDeleteDialogOpen(false)} 
+        onConfirm={() => {
           onDelete();
           setDeleteDialogOpen(false);
         }}>
